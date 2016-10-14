@@ -5,13 +5,13 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     res.json({'data':[
         {'deptName':'中国','deptCode':'310100','logoUrl':''},
-        {'deptName':'美国','cityCode':'110100','logoUrl':''},
-        {'deptName':'日本','cityCode':'410100','logoUrl':''},
-        {'deptName':'俄罗斯','cityCode':'330100','logoUrl':''},
-        {'deptName':'德国','cityCode':'320100','logoUrl':''},
-        {'deptName':'英格兰','cityCode':'210200','logoUrl':''},
-        {'deptName':'英格兰','cityCode':'210200','logoUrl':''},
-        {'deptName':'加拿大','cityCode':'200100','logoUrl':''}
+        {'deptName':'美国','deptCode':'110100','logoUrl':''},
+        {'deptName':'日本','deptCode':'410100','logoUrl':''},
+        {'deptName':'俄罗斯','deptCode':'330100','logoUrl':''},
+        {'deptName':'德国','deptCode':'320100','logoUrl':''},
+        {'deptName':'英格兰','deptCode':'210200','logoUrl':''},
+        {'deptName':'英格兰','deptCode':'210200','logoUrl':''},
+        {'deptName':'加拿大','deptCode':'200100','logoUrl':''}
     ]});
 });
 

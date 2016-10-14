@@ -1,12 +1,13 @@
 var webpack = require('webpack');
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
+//var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     entry: {
-        entry: './entry.js',
+        index: './src/index.js'
     },
     output: {
-        path: './index/',
-        filename: './index.js'
+        path: './build/',
+        filename: '[name].js'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
@@ -20,7 +21,9 @@ module.exports = {
                 query: {
                     presets: ['react', 'es2015']
                 }
-            }
+            },
+            {test: /\.css$/, loader: "style!css"},
+            {test: /\.scss$/, loader: "style!css!sass"}
         ]
     }
     //,
@@ -41,8 +44,8 @@ module.exports = {
     //        cb(null, Boolean(isExternal));
     //    },
     //]
-    //,externals: {
-    //    'react': 'React',
-    //    'react-dom': 'ReactDOM'
-    //}
+    ,externals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM'
+    }
 };

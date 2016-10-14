@@ -1,4 +1,4 @@
-class Department extends React.Component {
+class BossList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -7,7 +7,7 @@ class Department extends React.Component {
     }
 
     componentWillMount() {
-        $.getJSON('/deptList').then(res=>{
+        $.getJSON('/bossList').then(res=>{
             this.setState({list:res.data})
         })
     }
@@ -16,11 +16,11 @@ class Department extends React.Component {
         if(this.state.list){
             let tempList = [];
             for(let item of this.state.list){
-                tempList.push(<li><img src="./../../images/1.jpg" width="80%"/><br/>{item.deptName}</li>)
+                tempList.push(<li><img src="./../../images/1.jpg" width="80%"/><br/>{item.bossName}</li>)
             }
             return (
-                <div className="department-list">
-                    <div className="list-title">分类</div>
+                <div className="boss-list">
+                    <div className="list-title">老板</div>
                     <ul>{tempList}</ul>
                 </div>
             )
@@ -28,4 +28,4 @@ class Department extends React.Component {
         return (<div></div>)
     }
 }
-export default Department;
+export default BossList;

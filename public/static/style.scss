@@ -1,0 +1,128 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+#reactDom{
+  z-index: 99;
+  padding: 10px;
+}
+.app-color-blue {
+  color: #46b8da;
+}
+
+.app-row {
+  display: flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-flex-direction: row;
+}
+
+.app-flex-3 {
+  -webkit-flex: 2.0;
+  min-width: 40px;
+  max-width: 40px;
+}
+
+.app-flex-7 {
+  -webkit-flex: 8.0;
+  width: 100%;
+}
+
+.form-group {
+  background-color: #ffffff;
+  position: relative;
+  z-index: 99;
+  margin-bottom: 0px;
+}
+
+#cityName {
+  color: #000;
+  width: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#cityName::after {
+  content: "";
+  background: #ffffff;
+  width: 6px;
+  height: 6px;
+  border: none;
+  display: block;
+  float: right;
+  margin-top: 5px;
+  margin-right: 5px;
+  transform: rotate(135deg);
+  border-top: .5px solid #000000;
+  border-right: .5px solid #000000;
+}
+ul.list-box{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.city-item{
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border-bottom: .5px solid #e5e5e5;
+}
+
+
+@keyframes insertionFade {
+  0% { width: 50%;height: 50%;}
+  30%{ width: 70%;height: 70%;}
+  90%{ width: 90%;height: 90%;}
+  100%{ width: 100%;height: 100%}
+}
+.table{
+  background-color: #ffffff;
+  position: absolute;
+  top:44px;
+  left: 0;
+  z-index: 99;
+}
+.mask{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+  z-index: 9;
+  display: none;
+}
+.search-state{
+  text-align: center;
+  height: 100px;
+  line-height: 100px;
+}
+.department-list{
+  position: relative;
+  width: 100%;
+  margin-top: 15px;
+}
+.department-list ul{
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  list-style: none;
+  -webkit-flex-wrap: wrap;
+  padding-left: 0px;
+  margin-top: 15px;
+}
+.department-list ul li{
+  white-space: nowrap;
+  display: block;
+  width: 25%;
+  text-align: center;
+}
+.list-title{
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px dashed #e5e5e5;
+  height: 30px;
+  line-height: 30px;
+}
