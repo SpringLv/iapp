@@ -16,7 +16,7 @@ class Department extends React.Component {
         if(this.state.list){
             let tempList = [];
             for(let item of this.state.list){
-                tempList.push(<li><img src="./../../images/1.jpg" width="80%"/><br/>{item.deptName}</li>)
+                tempList.push(<li><img src="/images/1.jpg" width="80%"/><br/>{item.deptName}</li>)
             }
             return (
                 <div className="department-list">

@@ -39,7 +39,7 @@ app.use('/users.html', users);
 app.use('/list', list);
 app.use('/deptList', deptList);
 app.use('/searchList',searchList);
-app.use('/bossList',searchList);
+app.use('/bossList',bossList);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
