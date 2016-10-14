@@ -10,11 +10,22 @@ body {
   z-index: 9;
   display: none;
 }
-
+.dom-hide{
+  display: none;
+}
+.dom-show{
+  display: block;
+}
 #reactDom {
   z-index: 99;
   padding: 10px;
 
+  .loading-more-box{
+    border-top: 1px dashed #eeeeee;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+  }
   .app-color-blue {
     color: #46b8da;
   }

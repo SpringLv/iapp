@@ -6,9 +6,9 @@ Util.GetQueryString = name => {
     return null;
 }
 Util.PUB_STATUS = {
-    CITY:{
-        cityName:null,
-        cityCode:null
+    CITY: {
+        cityName: null,
+        cityCode: null
     }
 }
 export default Util;

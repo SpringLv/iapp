@@ -1,4 +1,5 @@
 class BossList extends React.Component {
+
     constructor(props) {
         super(props)
         this.state = {
@@ -8,8 +9,8 @@ class BossList extends React.Component {
 
     componentWillMount() {
         $.getJSON('/bossList').then(res=> {
-            this.setState({list: res.data})
-            console.log(res.data);
+            this.setState({list: res.data});
+            //console.log(res.data);
         })
     }
 
