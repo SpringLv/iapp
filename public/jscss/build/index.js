@@ -199,7 +199,7 @@
 	                SearchInput.maskAndPosition(this.state.disable ? true : false),
 	                React.createElement(_Department2.default, null),
 	                React.createElement(_BossList2.default, null),
-	                React.createElement(_ScrollTouch2.default, null)
+	                React.createElement(_ScrollTouch2.default, { todo: this.addPager })
 	            );
 	        }
 	    }, {
@@ -211,6 +211,11 @@
 	            } else {
 	                this.setState({ disable: true });
 	            }
+	        }
+	    }, {
+	        key: 'addPager',
+	        value: function addPager() {
+	            console.log("加载页面拉");
 	        }
 	    }], [{
 	        key: 'maskAndPosition',
@@ -417,6 +422,11 @@
 	        cityCode: null
 	    }
 	};
+	Util.MOVEPOINT = {
+	    START: 0,
+	    END: 0,
+	    INTERVAL: 0
+	};
 	exports.default = Util;
 
 /***/ },
@@ -446,7 +456,8 @@
 	        var _this = _possibleConstructorReturn(this, (Department.__proto__ || Object.getPrototypeOf(Department)).call(this, props));
 
 	        _this.state = {
-	            list: null
+	            list: null,
+	            pageNumber: 1
 	        };
 	        return _this;
 	    }
@@ -654,6 +665,12 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+	var _Util = __webpack_require__(5);
+
+	var _Util2 = _interopRequireDefault(_Util);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -663,7 +680,18 @@
 	var ScrollTouch = function (_React$Component) {
 	    _inherits(ScrollTouch, _React$Component);
 
-	    _createClass(ScrollTouch, null, [{
+	    function ScrollTouch(props) {
+	        _classCallCheck(this, ScrollTouch);
+
+	        var _this = _possibleConstructorReturn(this, (ScrollTouch.__proto__ || Object.getPrototypeOf(ScrollTouch)).call(this, props));
+
+	        _this.state = {
+	            load: _this.um().starting
+	        };
+	        return _this;
+	    }
+
+	    _createClass(ScrollTouch, [{
 	        key: "um",
 	        value: function um() {
 	            return {
@@ -672,53 +700,81 @@
 	                "starting": "下拉加载"
 	            };
 	        }
-	    }]);
-
-	    function ScrollTouch(props) {
-	        _classCallCheck(this, ScrollTouch);
-
-	        var _this = _possibleConstructorReturn(this, (ScrollTouch.__proto__ || Object.getPrototypeOf(ScrollTouch)).call(this, props));
-
-	        _this.state = {};
-	        _this.moveInstance = 0;
-	        return _this;
-	    }
-
-	    _createClass(ScrollTouch, [{
-	        key: "events",
-	        value: function events() {
-	            addEventListener('touchStart', this.Start, false);
-	            addEventListener('touchMove', this.Move, false);
-	            addEventListener('touchEnd', this.End, false);
-	        }
 	    }, {
 	        key: "Start",
-	        value: function Start() {}
+	        value: function Start() {
+	            _Util2.default.MOVEPOINT.START = (event.touches[0] || event.changedTouches[0]).clientY;
+	            //console.log("Touch started (" + event.touches[0].clientX +"," + event.touches[0].clientY +")")
+	        }
 	    }, {
 	        key: "Move",
-	        value: function Move() {}
+	        value: function Move() {
+	            //console.log("Touch moved (" + event.touches[0].clientX +"," + event.touches[0].clientY +")")
+	            //console.log("Touch movedPage (" + event.changedTouches[0].pageX +"," + event.touches[0].pageY +")")
+	        }
 	    }, {
 	        key: "End",
-	        value: function End() {}
+	        value: function End() {
+	            var now = new Date().getTime();
+	            if (now - _Util2.default.MOVEPOINT.INTERVAL < 2000) return;
+	            _Util2.default.MOVEPOINT.INTERVAL = now;
+	            _Util2.default.MOVEPOINT.END = (event.touches[0] || event.changedTouches[0]).clientY;
+	            var y = _Util2.default.MOVEPOINT.START - _Util2.default.MOVEPOINT.END;
+	            var totalHeight = document.scrollingElement.scrollHeight;
+	            var domHeight = window.screen.height;
+	            var scrollHeight = document.scrollingElement.scrollTop;
+	            if (y >= 30 && scrollHeight + domHeight >= totalHeight) {
+	                this.setState({ load: this.um().loading });
+	                this.props.todo();
+	            }
+	            //console.log(document.scrollingElement.scrollHeight);
+	            //console.log("Touch end (" + event.changedTouches[0].clientX +"," + event.changedTouches[0].clientY +")");
+	        }
 	    }, {
-	        key: "AddDocuments",
-	        value: function AddDocuments() {}
-	    }, {
-	        key: "componentWillMount",
-	        value: function componentWillMount() {}
+	        key: "touchScroll",
+	        value: function touchScroll() {
+	            var event = event || window.event;
+	            switch (event.type) {
+	                case 'touchstart':
+	                    this.Start();
+	                    break;
+	                case 'touchmove':
+	                    //event.preventDefault();
+	                    this.Move();
+	                    break;
+	                case 'touchend':
+	                    this.End();
+	                    break;
+	            }
+	        }
 	    }, {
 	        key: "render",
 	        value: function render() {
 	            return React.createElement(
 	                "div",
 	                { className: "loading-more-box" },
-	                ScrollTouch.um().starting
+	                this.state.load
 	            );
 	        }
 	    }, {
 	        key: "componentDidMount",
 	        value: function componentDidMount() {
 	            this.events();
+	        }
+	    }, {
+	        key: "events",
+	        value: function events() {
+	            var _this2 = this;
+
+	            document.addEventListener('touchstart', function () {
+	                _this2.touchScroll();
+	            }, false);
+	            document.addEventListener('touchmove', function () {
+	                _this2.touchScroll();
+	            }, false);
+	            document.addEventListener('touchend', function () {
+	                _this2.touchScroll();
+	            }, false);
 	        }
 	    }]);
 

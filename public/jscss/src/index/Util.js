@@ -11,4 +11,9 @@ Util.PUB_STATUS = {
         cityCode: null
     }
 }
+Util.MOVEPOINT = {
+    START:0,
+    END:0,
+    INTERVAL:0
+}
 export default Util;

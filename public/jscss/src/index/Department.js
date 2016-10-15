@@ -2,7 +2,8 @@ class Department extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            list: null
+            list: null,
+            pageNumber:1
         }
     }
 

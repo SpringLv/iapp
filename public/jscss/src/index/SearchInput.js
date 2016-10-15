@@ -37,13 +37,13 @@ class SearchInput extends React.Component {
                         </div>
                     </div>
                 </div>
-                {this.state.disable?(<div className="table-box">
+                {this.state.disable ? (<div className="table-box">
                     <SearchList id="searchList" value={this.state.value}></SearchList>
-                </div>):""}
-                {SearchInput.maskAndPosition(this.state.disable?true:false)}
+                </div>) : ""}
+                {SearchInput.maskAndPosition(this.state.disable ? true : false)}
                 <DeptList></DeptList>
                 <BossList></BossList>
-                <ScrollTouch></ScrollTouch>
+                <ScrollTouch todo={this.addPager}></ScrollTouch>
             </div>
         )
     }
@@ -55,6 +55,10 @@ class SearchInput extends React.Component {
         } else {
             this.setState({disable: true});
         }
+    }
+
+    addPager() {
+        console.log("加载页面拉")
     }
 
     static maskAndPosition(flag) {
