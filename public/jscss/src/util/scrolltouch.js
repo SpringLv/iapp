@@ -4,20 +4,20 @@ class ScrollTouch extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            load:this.um().starting
+            load: this.um().starting
         };
     }
 
-    um(){
-        return({
-            "nothing":"就这么了",
-            "loading":"加载中",
-            "starting":"下拉加载"
+    um() {
+        return ({
+            "nothing": "就这么了",
+            "loading": "加载中",
+            "starting": "下拉加载"
         })
     }
 
     Start() {
-        Util.MOVEPOINT.START = (event.touches[0]||event.changedTouches[0]).clientY;
+        Util.MOVEPOINT.START = (event.touches[0] || event.changedTouches[0]).clientY;
         //console.log("Touch started (" + event.touches[0].clientX +"," + event.touches[0].clientY +")")
     }
 
@@ -28,16 +28,16 @@ class ScrollTouch extends React.Component {
 
     End() {
         let now = new Date().getTime();
-        if(now-Util.MOVEPOINT.INTERVAL < 2000) return;
+        if (now - Util.MOVEPOINT.INTERVAL < 700) return;
         Util.MOVEPOINT.INTERVAL = now;
-        Util.MOVEPOINT.END = (event.touches[0]||event.changedTouches[0]).clientY;
-        let y = Util.MOVEPOINT.START-Util.MOVEPOINT.END;
+        Util.MOVEPOINT.END = (event.touches[0] || event.changedTouches[0]).clientY;
+        let y = Util.MOVEPOINT.START - Util.MOVEPOINT.END;
         let totalHeight = document.scrollingElement.scrollHeight;
         let domHeight = window.screen.height;
         let scrollHeight = document.scrollingElement.scrollTop;
-        if(y>=30 && (scrollHeight+domHeight)>=totalHeight) {
-            this.setState({load:this.um().loading})
-            this.props.todo();
+        if (y >= 20 && (scrollHeight + domHeight) >= totalHeight) {
+            this.setState({load: this.um().loading});
+            this.props.todo(this.refs.loadingMoreBox);
         }
         //console.log(document.scrollingElement.scrollHeight);
         //console.log("Touch end (" + event.changedTouches[0].clientX +"," + event.changedTouches[0].clientY +")");
@@ -45,7 +45,7 @@ class ScrollTouch extends React.Component {
 
     touchScroll() {
         let event = event || window.event;
-        switch (event.type){
+        switch (event.type) {
             case 'touchstart':
                 this.Start();
                 break;
@@ -61,7 +61,7 @@ class ScrollTouch extends React.Component {
     }
 
     render() {
-        return(<div className="loading-more-box">{this.state.load}</div>)
+        return (<div className="loading-more-box" ref="loadingMoreBox">{this.state.load}</div>)
     }
 
     componentDidMount() {
@@ -69,9 +69,10 @@ class ScrollTouch extends React.Component {
     }
 
     events() {
-        document.addEventListener('touchstart',()=>{this.touchScroll()}, false);
-        document.addEventListener('touchmove', ()=>{this.touchScroll()}, false);
-        document.addEventListener('touchend', ()=>{this.touchScroll()}, false);
+        let _this = this;
+        document.addEventListener('touchstart', ()=>{_this.touchScroll()}, false);
+        document.addEventListener('touchmove', ()=>{_this.touchScroll()}, false);
+        document.addEventListener('touchend', ()=>{_this.touchScroll()}, false);
     }
 }
 export default ScrollTouch;

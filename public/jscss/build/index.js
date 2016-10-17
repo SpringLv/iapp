@@ -123,10 +123,6 @@
 
 	var _BossList2 = _interopRequireDefault(_BossList);
 
-	var _ScrollTouch = __webpack_require__(8);
-
-	var _ScrollTouch2 = _interopRequireDefault(_ScrollTouch);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -198,8 +194,7 @@
 	                ) : "",
 	                SearchInput.maskAndPosition(this.state.disable ? true : false),
 	                React.createElement(_Department2.default, null),
-	                React.createElement(_BossList2.default, null),
-	                React.createElement(_ScrollTouch2.default, { todo: this.addPager })
+	                React.createElement(_BossList2.default, null)
 	            );
 	        }
 	    }, {
@@ -211,11 +206,6 @@
 	            } else {
 	                this.setState({ disable: true });
 	            }
-	        }
-	    }, {
-	        key: 'addPager',
-	        value: function addPager() {
-	            console.log("加载页面拉");
 	        }
 	    }], [{
 	        key: 'maskAndPosition',
@@ -427,6 +417,8 @@
 	    END: 0,
 	    INTERVAL: 0
 	};
+	Util.BOSSLIST_DATA = [];
+	Util.TIMER = null;
 	exports.default = Util;
 
 /***/ },
@@ -456,8 +448,7 @@
 	        var _this = _possibleConstructorReturn(this, (Department.__proto__ || Object.getPrototypeOf(Department)).call(this, props));
 
 	        _this.state = {
-	            list: null,
-	            pageNumber: 1
+	            list: []
 	        };
 	        return _this;
 	    }
@@ -536,13 +527,23 @@
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _Util = __webpack_require__(5);
+
+	var _Util2 = _interopRequireDefault(_Util);
+
+	var _ScrollTouch = __webpack_require__(8);
+
+	var _ScrollTouch2 = _interopRequireDefault(_ScrollTouch);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -559,23 +560,43 @@
 	        var _this = _possibleConstructorReturn(this, (BossList.__proto__ || Object.getPrototypeOf(BossList)).call(this, props));
 
 	        _this.state = {
-	            list: null
+	            list: null,
+	            pageNumber: 0
 	        };
 	        return _this;
 	    }
 
 	    _createClass(BossList, [{
-	        key: "componentWillMount",
-	        value: function componentWillMount() {
-	            var _this2 = this;
-
-	            $.getJSON('/bossList').then(function (res) {
-	                _this2.setState({ list: res.data });
-	                //console.log(res.data);
-	            });
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {}
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.addPager();
 	        }
 	    }, {
-	        key: "render",
+	        key: 'componentWillUpdate',
+	        value: function componentWillUpdate() {
+	            //console.log("ssss")
+	            //$.getJSON('/bossList?page='+this.state.pageNumber).then(res=> {
+	            //    for(let item of res.data){
+	            //        Util.BOSSLIST_DATA.push(item);
+	            //    }
+	            //    this.setState({list: Util.BOSSLIST_DATA});
+	            //})
+	        }
+	    }, {
+	        key: 'componentDidUpdate',
+	        value: function componentDidUpdate() {
+	            console.log('sss11');
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            //console.log("UN")
+	        }
+	    }, {
+	        key: 'render',
 	        value: function render() {
 	            if (this.state.list) {
 	                var tempList = [];
@@ -589,24 +610,24 @@
 	                        var item = _step.value;
 
 	                        emp = React.createElement(
-	                            "li",
-	                            { className: "boss-item" },
+	                            'li',
+	                            { className: 'boss-item' },
 	                            React.createElement(
-	                                "div",
-	                                { className: "boss-img-box" },
-	                                React.createElement("img", { src: "/images/2.jpg", width: "90px" })
+	                                'div',
+	                                { className: 'boss-img-box' },
+	                                React.createElement('img', { src: '/images/2.jpg', width: '90px' })
 	                            ),
 	                            React.createElement(
-	                                "div",
-	                                { className: "boss-name-des" },
+	                                'div',
+	                                { className: 'boss-name-des' },
 	                                React.createElement(
-	                                    "span",
-	                                    { className: "boss-name" },
+	                                    'span',
+	                                    { className: 'boss-name' },
 	                                    item.bossName
 	                                ),
 	                                React.createElement(
-	                                    "span",
-	                                    { className: "boss-des" },
+	                                    'span',
+	                                    { className: 'boss-des' },
 	                                    item.des
 	                                )
 	                            )
@@ -629,21 +650,65 @@
 	                }
 
 	                return React.createElement(
-	                    "div",
-	                    { className: "boss-list" },
+	                    'div',
+	                    null,
 	                    React.createElement(
-	                        "div",
-	                        { className: "list-title" },
-	                        "BOSS"
+	                        'div',
+	                        { className: 'boss-list' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'list-title' },
+	                            'BOSS'
+	                        ),
+	                        React.createElement(
+	                            'ul',
+	                            null,
+	                            tempList
+	                        )
 	                    ),
-	                    React.createElement(
-	                        "ul",
-	                        null,
-	                        tempList
-	                    )
+	                    React.createElement(_ScrollTouch2.default, { todo: this.addPager.bind(this) })
 	                );
 	            }
-	            return React.createElement("div", null);
+	            return React.createElement('div', null);
+	        }
+	    }, {
+	        key: 'addPager',
+	        value: function addPager(childrenDom) {
+	            var _this2 = this;
+
+	            if (this.state.pageNumber > 5) {
+	                childrenDom && (childrenDom.innerHTML = "就这么多了，亲~");
+	                return;
+	            }
+	            $.getJSON('/bossList?page=' + ++this.state.pageNumber).then(function (res) {
+	                var _iteratorNormalCompletion2 = true;
+	                var _didIteratorError2 = false;
+	                var _iteratorError2 = undefined;
+
+	                try {
+	                    for (var _iterator2 = res.data[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+	                        var item = _step2.value;
+
+	                        _Util2.default.BOSSLIST_DATA.push(item);
+	                    }
+	                } catch (err) {
+	                    _didIteratorError2 = true;
+	                    _iteratorError2 = err;
+	                } finally {
+	                    try {
+	                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+	                            _iterator2.return();
+	                        }
+	                    } finally {
+	                        if (_didIteratorError2) {
+	                            throw _iteratorError2;
+	                        }
+	                    }
+	                }
+
+	                _this2.setState({ list: _Util2.default.BOSSLIST_DATA, pageNumber: _this2.state.pageNumber });
+	                childrenDom && (childrenDom.innerHTML = "下拉加载");
+	            });
 	        }
 	    }]);
 
@@ -683,12 +748,12 @@
 	    function ScrollTouch(props) {
 	        _classCallCheck(this, ScrollTouch);
 
-	        var _this = _possibleConstructorReturn(this, (ScrollTouch.__proto__ || Object.getPrototypeOf(ScrollTouch)).call(this, props));
+	        var _this2 = _possibleConstructorReturn(this, (ScrollTouch.__proto__ || Object.getPrototypeOf(ScrollTouch)).call(this, props));
 
-	        _this.state = {
-	            load: _this.um().starting
+	        _this2.state = {
+	            load: _this2.um().starting
 	        };
-	        return _this;
+	        return _this2;
 	    }
 
 	    _createClass(ScrollTouch, [{
@@ -716,16 +781,16 @@
 	        key: "End",
 	        value: function End() {
 	            var now = new Date().getTime();
-	            if (now - _Util2.default.MOVEPOINT.INTERVAL < 2000) return;
+	            if (now - _Util2.default.MOVEPOINT.INTERVAL < 700) return;
 	            _Util2.default.MOVEPOINT.INTERVAL = now;
 	            _Util2.default.MOVEPOINT.END = (event.touches[0] || event.changedTouches[0]).clientY;
 	            var y = _Util2.default.MOVEPOINT.START - _Util2.default.MOVEPOINT.END;
 	            var totalHeight = document.scrollingElement.scrollHeight;
 	            var domHeight = window.screen.height;
 	            var scrollHeight = document.scrollingElement.scrollTop;
-	            if (y >= 30 && scrollHeight + domHeight >= totalHeight) {
+	            if (y >= 20 && scrollHeight + domHeight >= totalHeight) {
 	                this.setState({ load: this.um().loading });
-	                this.props.todo();
+	                this.props.todo(this.refs.loadingMoreBox);
 	            }
 	            //console.log(document.scrollingElement.scrollHeight);
 	            //console.log("Touch end (" + event.changedTouches[0].clientX +"," + event.changedTouches[0].clientY +")");
@@ -752,7 +817,7 @@
 	        value: function render() {
 	            return React.createElement(
 	                "div",
-	                { className: "loading-more-box" },
+	                { className: "loading-more-box", ref: "loadingMoreBox" },
 	                this.state.load
 	            );
 	        }
@@ -764,16 +829,15 @@
 	    }, {
 	        key: "events",
 	        value: function events() {
-	            var _this2 = this;
-
+	            var _this = this;
 	            document.addEventListener('touchstart', function () {
-	                _this2.touchScroll();
+	                _this.touchScroll();
 	            }, false);
 	            document.addEventListener('touchmove', function () {
-	                _this2.touchScroll();
+	                _this.touchScroll();
 	            }, false);
 	            document.addEventListener('touchend', function () {
-	                _this2.touchScroll();
+	                _this.touchScroll();
 	            }, false);
 	        }
 	    }]);

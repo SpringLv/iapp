@@ -1,17 +1,39 @@
+import Util from './Util'
+import ScrollTouch from '../util/ScrollTouch'
 class BossList extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            list: null
+            list: null,
+            pageNumber:0
         }
     }
 
     componentWillMount() {
-        $.getJSON('/bossList').then(res=> {
-            this.setState({list: res.data});
-            //console.log(res.data);
-        })
+
+    }
+
+    componentDidMount() {
+        this.addPager();
+    }
+
+    componentWillUpdate() {
+        //console.log("ssss")
+        //$.getJSON('/bossList?page='+this.state.pageNumber).then(res=> {
+        //    for(let item of res.data){
+        //        Util.BOSSLIST_DATA.push(item);
+        //    }
+        //    this.setState({list: Util.BOSSLIST_DATA});
+        //})
+    }
+    componentDidUpdate() {
+        console.log('sss11')
+
+    }
+
+    componentWillUnmount() {
+        //console.log("UN")
     }
 
     render() {
@@ -29,13 +51,31 @@ class BossList extends React.Component {
                 tempList.push(emp)
             }
             return (
-                <div className="boss-list">
-                    <div className="list-title">BOSS</div>
-                    <ul>{tempList}</ul>
+                <div>
+                    <div className="boss-list">
+                        <div className="list-title">BOSS</div>
+                        <ul>{tempList}</ul>
+                    </div>
+                    <ScrollTouch todo={this.addPager.bind(this)}></ScrollTouch>
                 </div>
             )
         }
         return (<div></div>)
     }
+
+    addPager(childrenDom) {
+        if(this.state.pageNumber > 5) {
+            childrenDom && (childrenDom.innerHTML="就这么多了，亲~");
+            return;
+        }
+        $.getJSON('/bossList?page='+(++this.state.pageNumber)).then(res=> {
+            for(let item of res.data){
+                Util.BOSSLIST_DATA.push(item);
+            }
+            this.setState({list: Util.BOSSLIST_DATA,pageNumber:this.state.pageNumber});
+            childrenDom && (childrenDom.innerHTML="下拉加载")
+        })
+    }
+
 }
 export default BossList;

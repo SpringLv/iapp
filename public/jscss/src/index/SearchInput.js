@@ -2,7 +2,6 @@ import SearchList from './SearchList';
 import Util from './Util';
 import DeptList from './Department';
 import BossList from './BossList';
-import ScrollTouch from '../util/ScrollTouch'
 
 class SearchInput extends React.Component {
 
@@ -43,7 +42,6 @@ class SearchInput extends React.Component {
                 {SearchInput.maskAndPosition(this.state.disable ? true : false)}
                 <DeptList></DeptList>
                 <BossList></BossList>
-                <ScrollTouch todo={this.addPager}></ScrollTouch>
             </div>
         )
     }
@@ -55,10 +53,6 @@ class SearchInput extends React.Component {
         } else {
             this.setState({disable: true});
         }
-    }
-
-    addPager() {
-        console.log("加载页面拉")
     }
 
     static maskAndPosition(flag) {

@@ -16,4 +16,6 @@ Util.MOVEPOINT = {
     END:0,
     INTERVAL:0
 }
+Util.BOSSLIST_DATA=[];
+Util.TIMER=null;
 export default Util;
