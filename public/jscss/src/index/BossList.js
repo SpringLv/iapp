@@ -11,7 +11,7 @@ class BossList extends React.Component {
     }
 
     componentWillMount() {
-
+        window.addEventListener("hashchange",()=>{Util.BOSSLIST_DATA = []},false);
     }
 
     componentDidMount() {
@@ -19,21 +19,12 @@ class BossList extends React.Component {
     }
 
     componentWillUpdate() {
-        //console.log("ssss")
-        //$.getJSON('/bossList?page='+this.state.pageNumber).then(res=> {
-        //    for(let item of res.data){
-        //        Util.BOSSLIST_DATA.push(item);
-        //    }
-        //    this.setState({list: Util.BOSSLIST_DATA});
-        //})
     }
-    componentDidUpdate() {
-        console.log('sss11')
 
+    componentDidUpdate() {
     }
 
     componentWillUnmount() {
-        //console.log("UN")
     }
 
     render() {
@@ -73,7 +64,7 @@ class BossList extends React.Component {
                 Util.BOSSLIST_DATA.push(item);
             }
             this.setState({list: Util.BOSSLIST_DATA,pageNumber:this.state.pageNumber});
-            childrenDom && (childrenDom.innerHTML="下拉加载")
+            //childrenDom && (childrenDom.innerHTML="下拉加载")
         })
     }
 

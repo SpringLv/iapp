@@ -568,7 +568,11 @@
 
 	    _createClass(BossList, [{
 	        key: 'componentWillMount',
-	        value: function componentWillMount() {}
+	        value: function componentWillMount() {
+	            window.addEventListener("hashchange", function () {
+	                _Util2.default.BOSSLIST_DATA = [];
+	            }, false);
+	        }
 	    }, {
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
@@ -576,25 +580,13 @@
 	        }
 	    }, {
 	        key: 'componentWillUpdate',
-	        value: function componentWillUpdate() {
-	            //console.log("ssss")
-	            //$.getJSON('/bossList?page='+this.state.pageNumber).then(res=> {
-	            //    for(let item of res.data){
-	            //        Util.BOSSLIST_DATA.push(item);
-	            //    }
-	            //    this.setState({list: Util.BOSSLIST_DATA});
-	            //})
-	        }
+	        value: function componentWillUpdate() {}
 	    }, {
 	        key: 'componentDidUpdate',
-	        value: function componentDidUpdate() {
-	            console.log('sss11');
-	        }
+	        value: function componentDidUpdate() {}
 	    }, {
 	        key: 'componentWillUnmount',
-	        value: function componentWillUnmount() {
-	            //console.log("UN")
-	        }
+	        value: function componentWillUnmount() {}
 	    }, {
 	        key: 'render',
 	        value: function render() {
@@ -707,7 +699,7 @@
 	                }
 
 	                _this2.setState({ list: _Util2.default.BOSSLIST_DATA, pageNumber: _this2.state.pageNumber });
-	                childrenDom && (childrenDom.innerHTML = "下拉加载");
+	                //childrenDom && (childrenDom.innerHTML="下拉加载")
 	            });
 	        }
 	    }]);
@@ -766,23 +758,11 @@
 	            };
 	        }
 	    }, {
-	        key: "Start",
-	        value: function Start() {
-	            _Util2.default.MOVEPOINT.START = (event.touches[0] || event.changedTouches[0]).clientY;
-	            //console.log("Touch started (" + event.touches[0].clientX +"," + event.touches[0].clientY +")")
-	        }
-	    }, {
-	        key: "Move",
-	        value: function Move() {
-	            //console.log("Touch moved (" + event.touches[0].clientX +"," + event.touches[0].clientY +")")
-	            //console.log("Touch movedPage (" + event.changedTouches[0].pageX +"," + event.touches[0].pageY +")")
-	        }
-	    }, {
-	        key: "End",
-	        value: function End() {
-	            var now = new Date().getTime();
-	            if (now - _Util2.default.MOVEPOINT.INTERVAL < 700) return;
-	            _Util2.default.MOVEPOINT.INTERVAL = now;
+	        key: "checkScroll",
+	        value: function checkScroll(callback) {
+	            //let now = new Date().getTime();
+	            //if (now - Util.MOVEPOINT.INTERVAL < 10) return;
+	            //Util.MOVEPOINT.INTERVAL = now;
 	            _Util2.default.MOVEPOINT.END = (event.touches[0] || event.changedTouches[0]).clientY;
 	            var y = _Util2.default.MOVEPOINT.START - _Util2.default.MOVEPOINT.END;
 	            var totalHeight = document.scrollingElement.scrollHeight;
@@ -790,10 +770,10 @@
 	            var scrollHeight = document.scrollingElement.scrollTop;
 	            if (y >= 20 && scrollHeight + domHeight >= totalHeight) {
 	                this.setState({ load: this.um().loading });
-	                this.props.todo(this.refs.loadingMoreBox);
+	                callback && callback(this.refs.loadingMoreBox);
+	            } else {
+	                this.setState({ load: this.um().starting });
 	            }
-	            //console.log(document.scrollingElement.scrollHeight);
-	            //console.log("Touch end (" + event.changedTouches[0].clientX +"," + event.changedTouches[0].clientY +")");
 	        }
 	    }, {
 	        key: "touchScroll",
@@ -801,14 +781,13 @@
 	            var event = event || window.event;
 	            switch (event.type) {
 	                case 'touchstart':
-	                    this.Start();
+	                    _Util2.default.MOVEPOINT.START = (event.touches[0] || event.changedTouches[0]).clientY;
 	                    break;
 	                case 'touchmove':
-	                    //event.preventDefault();
-	                    this.Move();
+	                    this.checkScroll();
 	                    break;
 	                case 'touchend':
-	                    this.End();
+	                    this.checkScroll(this.props.todo);
 	                    break;
 	            }
 	        }
