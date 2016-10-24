@@ -30,10 +30,7 @@ class CityList extends React.Component {
     }
 
     handleClick() {
-        let name = event.target.innerText;
-        let code = event.target.attributes['data-code'].nodeValue;
-        Util.PUB_STATUS.CITY = {cityName:name,cityCode:code};
-        location.hash = '/';
+
     }
 }
 

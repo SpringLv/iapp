@@ -1,13 +1,29 @@
 var webpack = require('webpack');
-var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
+var path = require('path');
+var glob = require('glob');
+//var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
 //var ExtractTextPlugin = require('extract-text-webpack-plugin');
+function entries (globPath) {
+    var files = glob.sync(globPath);
+    var entries = {}, entry, dirname, basename;
+
+    for (var i = 0; i < files.length; i++) {
+        entry = files[i];
+        dirname = path.dirname(entry);
+        basename = path.basename(entry, '.js');
+        entries[path.join(dirname, basename)] = './' + entry;
+    }
+    console.log(__dirname);
+    return entries;
+}
 module.exports = {
-    entry: {
-        index: './src/index.js'
-    },
+    entry: entries('./public/jscss/*.js'),
     output: {
-        path: './build/',
+        path: path.join('public/dist','0.0.0'),
+        //path: path.join(__dirname, '.', 'public', '', ''),
+        //publicPath: '/assets/',
         filename: '[name].js'
+        //,chunkFilename: '[id]' + (debug ? '' : '-[chunkhash]') + '.js'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']

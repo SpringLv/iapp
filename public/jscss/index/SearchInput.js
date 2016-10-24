@@ -25,7 +25,7 @@ class SearchInput extends React.Component {
                 <div className="form-group">
                     <div className="app-row">
                         <div className="app-flex-3">
-                            <a href="#/cityList" id="cityName">{this.state.cityName}</a>
+                            <a onCLick={this.handleClick.bind(this)} id="cityName">{this.state.cityName}</a>
                         </div>
                         <div className="app-flex-7">
                             <div className="form-group">
@@ -53,6 +53,10 @@ class SearchInput extends React.Component {
         } else {
             this.setState({disable: true});
         }
+    }
+
+    handleClick() {
+
     }
 
     static maskAndPosition(flag) {
