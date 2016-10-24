@@ -20,7 +20,9 @@
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "node-sass": "^3.10.1",
+    "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
+    "redux": "^3.6.0",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2"

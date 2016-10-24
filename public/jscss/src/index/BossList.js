@@ -5,26 +5,20 @@ class BossList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            list: null,
+            list: [],
             pageNumber:0
         }
     }
 
     componentWillMount() {
-        window.addEventListener("hashchange",()=>{Util.BOSSLIST_DATA = []},false);
+        window.addEventListener("hashchange",()=>{
+            Util.BOSSLIST_DATA = []
+            this.setState({list:[],pageNumber:0});
+        },false);
     }
 
     componentDidMount() {
         this.addPager();
-    }
-
-    componentWillUpdate() {
-    }
-
-    componentDidUpdate() {
-    }
-
-    componentWillUnmount() {
     }
 
     render() {
@@ -64,7 +58,7 @@ class BossList extends React.Component {
                 Util.BOSSLIST_DATA.push(item);
             }
             this.setState({list: Util.BOSSLIST_DATA,pageNumber:this.state.pageNumber});
-            //childrenDom && (childrenDom.innerHTML="下拉加载")
+            childrenDom && (childrenDom.innerHTML="下拉加载")
         })
     }
 

@@ -560,7 +560,7 @@
 	        var _this = _possibleConstructorReturn(this, (BossList.__proto__ || Object.getPrototypeOf(BossList)).call(this, props));
 
 	        _this.state = {
-	            list: null,
+	            list: [],
 	            pageNumber: 0
 	        };
 	        return _this;
@@ -569,8 +569,11 @@
 	    _createClass(BossList, [{
 	        key: 'componentWillMount',
 	        value: function componentWillMount() {
+	            var _this2 = this;
+
 	            window.addEventListener("hashchange", function () {
 	                _Util2.default.BOSSLIST_DATA = [];
+	                _this2.setState({ list: [], pageNumber: 0 });
 	            }, false);
 	        }
 	    }, {
@@ -578,15 +581,6 @@
 	        value: function componentDidMount() {
 	            this.addPager();
 	        }
-	    }, {
-	        key: 'componentWillUpdate',
-	        value: function componentWillUpdate() {}
-	    }, {
-	        key: 'componentDidUpdate',
-	        value: function componentDidUpdate() {}
-	    }, {
-	        key: 'componentWillUnmount',
-	        value: function componentWillUnmount() {}
 	    }, {
 	        key: 'render',
 	        value: function render() {
@@ -666,7 +660,7 @@
 	    }, {
 	        key: 'addPager',
 	        value: function addPager(childrenDom) {
-	            var _this2 = this;
+	            var _this3 = this;
 
 	            if (this.state.pageNumber > 5) {
 	                childrenDom && (childrenDom.innerHTML = "就这么多了，亲~");
@@ -698,8 +692,8 @@
 	                    }
 	                }
 
-	                _this2.setState({ list: _Util2.default.BOSSLIST_DATA, pageNumber: _this2.state.pageNumber });
-	                //childrenDom && (childrenDom.innerHTML="下拉加载")
+	                _this3.setState({ list: _Util2.default.BOSSLIST_DATA, pageNumber: _this3.state.pageNumber });
+	                childrenDom && (childrenDom.innerHTML = "下拉加载");
 	            });
 	        }
 	    }]);
@@ -760,9 +754,7 @@
 	    }, {
 	        key: "checkScroll",
 	        value: function checkScroll(callback) {
-	            //let now = new Date().getTime();
-	            //if (now - Util.MOVEPOINT.INTERVAL < 10) return;
-	            //Util.MOVEPOINT.INTERVAL = now;
+
 	            _Util2.default.MOVEPOINT.END = (event.touches[0] || event.changedTouches[0]).clientY;
 	            var y = _Util2.default.MOVEPOINT.START - _Util2.default.MOVEPOINT.END;
 	            var totalHeight = document.scrollingElement.scrollHeight;
@@ -770,9 +762,12 @@
 	            var scrollHeight = document.scrollingElement.scrollTop;
 	            if (y >= 20 && scrollHeight + domHeight >= totalHeight) {
 	                this.setState({ load: this.um().loading });
+	                var now = new Date().getTime();
+	                if (now - _Util2.default.MOVEPOINT.INTERVAL < 700) return;
+	                _Util2.default.MOVEPOINT.INTERVAL = now;
 	                callback && callback(this.refs.loadingMoreBox);
 	            } else {
-	                this.setState({ load: this.um().starting });
+	                //this.setState({load: this.um().starting});
 	            }
 	        }
 	    }, {
@@ -784,10 +779,10 @@
 	                    _Util2.default.MOVEPOINT.START = (event.touches[0] || event.changedTouches[0]).clientY;
 	                    break;
 	                case 'touchmove':
-	                    this.checkScroll();
+	                    this.checkScroll(this.props.todo);
 	                    break;
 	                case 'touchend':
-	                    this.checkScroll(this.props.todo);
+	                    //this.checkScroll();
 	                    break;
 	            }
 	        }

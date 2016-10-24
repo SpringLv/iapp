@@ -17,9 +17,7 @@ class ScrollTouch extends React.Component {
     }
 
     checkScroll(callback) {
-        //let now = new Date().getTime();
-        //if (now - Util.MOVEPOINT.INTERVAL < 10) return;
-        //Util.MOVEPOINT.INTERVAL = now;
+
         Util.MOVEPOINT.END = (event.touches[0] || event.changedTouches[0]).clientY;
         let y = Util.MOVEPOINT.START - Util.MOVEPOINT.END;
         let totalHeight = document.scrollingElement.scrollHeight;
@@ -27,9 +25,12 @@ class ScrollTouch extends React.Component {
         let scrollHeight = document.scrollingElement.scrollTop;
         if (y >= 20 && (scrollHeight + domHeight) >= totalHeight) {
             this.setState({load: this.um().loading});
+            let now = new Date().getTime();
+            if (now - Util.MOVEPOINT.INTERVAL < 700) return;
+            Util.MOVEPOINT.INTERVAL = now;
             callback&&callback(this.refs.loadingMoreBox);
         }else{
-            this.setState({load: this.um().starting});
+            //this.setState({load: this.um().starting});
         }
     }
 
@@ -40,10 +41,10 @@ class ScrollTouch extends React.Component {
                 Util.MOVEPOINT.START = (event.touches[0] || event.changedTouches[0]).clientY;
                 break;
             case 'touchmove':
-                this.checkScroll();
+                this.checkScroll(this.props.todo);
                 break;
             case 'touchend':
-                this.checkScroll(this.props.todo);
+                //this.checkScroll();
                 break;
         }
 
