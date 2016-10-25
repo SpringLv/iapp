@@ -13,7 +13,6 @@ function entries (globPath) {
         basename = path.basename(entry, '.js');
         entries[path.join(dirname, basename)] = './' + entry;
     }
-    console.log(__dirname);
     return entries;
 }
 module.exports = {

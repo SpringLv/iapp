@@ -64,9 +64,15 @@ body {
       border-top: .5px solid #000000;
       border-right: .5px solid #000000; }
   #reactDom ul.list-box {
+    position: absolute;
     list-style: none;
-    margin: 0;
-    padding: 0; }
+    padding-left: 10px;
+    padding-right: 10px;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    width: 100%;
+    background-color: #ffffff; }
   #reactDom .city-item {
     width: 100%;
     height: 40px;

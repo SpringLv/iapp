@@ -2,6 +2,7 @@ import SearchList from './SearchList';
 import Util from './Util';
 import DeptList from './Department';
 import BossList from './BossList';
+import CityList from './CityList';
 
 class SearchInput extends React.Component {
 
@@ -9,14 +10,10 @@ class SearchInput extends React.Component {
         super(props);
         this.state = {
             value: 'Hello!',
-            cityName: "定位",
-            disable: false
+            cityName: "选择",
+            disable: false,
+            cityListDisable:true
         }
-    }
-
-    componentWillMount() {
-        if (Util.PUB_STATUS.CITY.cityName) this.setState({cityName: Util.PUB_STATUS.CITY.cityName})
-        if (Util.PUB_STATUS.CITY.cityCode) this.setState({cityCode: Util.PUB_STATUS.CITY.cityCode})
     }
 
     render() {
@@ -25,7 +22,7 @@ class SearchInput extends React.Component {
                 <div className="form-group">
                     <div className="app-row">
                         <div className="app-flex-3">
-                            <a onCLick={this.handleClick.bind(this)} id="cityName">{this.state.cityName}</a>
+                            <div onClick={this.handleCityList.bind(this)} id="cityName">{this.state.cityName}</div>
                         </div>
                         <div className="app-flex-7">
                             <div className="form-group">
@@ -40,8 +37,9 @@ class SearchInput extends React.Component {
                     <SearchList id="searchList" value={this.state.value}></SearchList>
                 </div>) : ""}
                 {SearchInput.maskAndPosition(this.state.disable ? true : false)}
-                <DeptList></DeptList>
-                <BossList></BossList>
+                <DeptList ref="deptList"></DeptList>
+                <BossList ref="bossList"></BossList>
+                <CityList ref="cityList" parentDom={this}></CityList>
             </div>
         )
     }
@@ -55,8 +53,12 @@ class SearchInput extends React.Component {
         }
     }
 
-    handleClick() {
-
+    handleCityList() {
+        $.getJSON('/list', res => {
+            this.refs.cityList.setState({list:res.data})
+            this.refs.deptList.refs.list.className="dom-hide";
+            this.refs.bossList.refs.list.className="dom-hide";
+        });
     }
 
     static maskAndPosition(flag) {

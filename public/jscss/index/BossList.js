@@ -6,15 +6,15 @@ class BossList extends React.Component {
         super(props)
         this.state = {
             list: [],
-            pageNumber:0
+            pageNumber: 0
         }
     }
 
     componentWillMount() {
-        window.addEventListener("hashchange",()=>{
+        window.addEventListener("hashchange", ()=> {
             Util.BOSSLIST_DATA = []
-            this.setState({list:[],pageNumber:0});
-        },false);
+            this.setState({list: [], pageNumber: 0});
+        }, false);
     }
 
     componentDidMount() {
@@ -26,17 +26,19 @@ class BossList extends React.Component {
             let tempList = [];
             let emp;
             for (let item of this.state.list) {
-                emp = (<li className="boss-item">
-                    <div className="boss-img-box"><img src="/images/2.jpg" width="90px"/></div>
-                    <div className="boss-name-des">
-                        <span className="boss-name">{item.bossName}</span>
-                        <span className="boss-des">{item.des}</span>
-                    </div>
-                </li>)
+                emp = (
+                    <li className="boss-item">
+                        <div className="boss-img-box"><img src="/images/2.jpg" width="90px"/></div>
+                        <div className="boss-name-des">
+                            <span className="boss-name">{item.bossName}</span>
+                            <span className="boss-des">{item.des}</span>
+                        </div>
+                    </li>
+                )
                 tempList.push(emp)
             }
             return (
-                <div>
+                <div ref="list">
                     <div className="boss-list">
                         <div className="list-title">BOSS</div>
                         <ul>{tempList}</ul>
@@ -49,16 +51,16 @@ class BossList extends React.Component {
     }
 
     addPager(childrenDom) {
-        if(this.state.pageNumber > 5) {
-            childrenDom && (childrenDom.innerHTML="就这么多了，亲~");
+        if (this.state.pageNumber > 5) {
+            childrenDom && (childrenDom.innerHTML = "就这么多了，亲~");
             return;
         }
-        $.getJSON('/bossList?page='+(++this.state.pageNumber)).then(res=> {
-            for(let item of res.data){
+        $.getJSON('/bossList?page=' + (++this.state.pageNumber)).then(res=> {
+            for (let item of res.data) {
                 Util.BOSSLIST_DATA.push(item);
             }
-            this.setState({list: Util.BOSSLIST_DATA,pageNumber:this.state.pageNumber});
-            childrenDom && (childrenDom.innerHTML="下拉加载")
+            this.setState({list: Util.BOSSLIST_DATA, pageNumber: this.state.pageNumber});
+            childrenDom && (childrenDom.innerHTML = "下拉加载")
         })
     }
 

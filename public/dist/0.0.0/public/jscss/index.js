@@ -58,10 +58,6 @@
 
 	var _SearchInput2 = _interopRequireDefault(_SearchInput);
 
-	var _CityList = __webpack_require__(9);
-
-	var _CityList2 = _interopRequireDefault(_CityList);
-
 	var _Util = __webpack_require__(5);
 
 	var _Util2 = _interopRequireDefault(_Util);
@@ -73,12 +69,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//import { Router, Route, hashHistory } from 'react-router';
-	ReactDOM.render(_react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(_SearchInput2.default, null),
-	    _react2.default.createElement(_CityList2.default, null)
-	), document.getElementById("reactDom"));
+	ReactDOM.render(_react2.default.createElement(_SearchInput2.default, null), document.getElementById("reactDom"));
 	window.Util = _Util2.default;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
@@ -122,6 +113,10 @@
 
 	var _BossList2 = _interopRequireDefault(_BossList);
 
+	var _CityList = __webpack_require__(9);
+
+	var _CityList2 = _interopRequireDefault(_CityList);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -140,19 +135,14 @@
 
 	        _this.state = {
 	            value: 'Hello!',
-	            cityName: "定位",
-	            disable: false
+	            cityName: "选择",
+	            disable: false,
+	            cityListDisable: true
 	        };
 	        return _this;
 	    }
 
 	    _createClass(SearchInput, [{
-	        key: 'componentWillMount',
-	        value: function componentWillMount() {
-	            if (_Util2.default.PUB_STATUS.CITY.cityName) this.setState({ cityName: _Util2.default.PUB_STATUS.CITY.cityName });
-	            if (_Util2.default.PUB_STATUS.CITY.cityCode) this.setState({ cityCode: _Util2.default.PUB_STATUS.CITY.cityCode });
-	        }
-	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return React.createElement(
@@ -168,8 +158,8 @@
 	                            'div',
 	                            { className: 'app-flex-3' },
 	                            React.createElement(
-	                                'a',
-	                                { onCLick: this.handleClick.bind(this), id: 'cityName' },
+	                                'div',
+	                                { onClick: this.handleCityList.bind(this), id: 'cityName' },
 	                                this.state.cityName
 	                            )
 	                        ),
@@ -192,8 +182,9 @@
 	                    React.createElement(_SearchList2.default, { id: 'searchList', value: this.state.value })
 	                ) : "",
 	                SearchInput.maskAndPosition(this.state.disable ? true : false),
-	                React.createElement(_Department2.default, null),
-	                React.createElement(_BossList2.default, null)
+	                React.createElement(_Department2.default, { ref: 'deptList' }),
+	                React.createElement(_BossList2.default, { ref: 'bossList' }),
+	                React.createElement(_CityList2.default, { ref: 'cityList', parentDom: this })
 	            );
 	        }
 	    }, {
@@ -207,8 +198,16 @@
 	            }
 	        }
 	    }, {
-	        key: 'handleClick',
-	        value: function handleClick() {}
+	        key: 'handleCityList',
+	        value: function handleCityList() {
+	            var _this2 = this;
+
+	            $.getJSON('/list', function (res) {
+	                _this2.refs.cityList.setState({ list: res.data });
+	                _this2.refs.deptList.refs.list.className = "dom-hide";
+	                _this2.refs.bossList.refs.list.className = "dom-hide";
+	            });
+	        }
 	    }], [{
 	        key: 'maskAndPosition',
 	        value: function maskAndPosition(flag) {
@@ -502,16 +501,20 @@
 
 	                return React.createElement(
 	                    "div",
-	                    { className: "department-list" },
+	                    { ref: "list" },
 	                    React.createElement(
 	                        "div",
-	                        { className: "list-title" },
-	                        "\u5206\u7C7B"
-	                    ),
-	                    React.createElement(
-	                        "ul",
-	                        null,
-	                        tempList
+	                        { className: "department-list" },
+	                        React.createElement(
+	                            "div",
+	                            { className: "list-title" },
+	                            "\u5206\u7C7B"
+	                        ),
+	                        React.createElement(
+	                            "ul",
+	                            null,
+	                            tempList
+	                        )
 	                    )
 	                );
 	            }
@@ -639,7 +642,7 @@
 
 	                return React.createElement(
 	                    'div',
-	                    null,
+	                    { ref: 'list' },
 	                    React.createElement(
 	                        'div',
 	                        { className: 'boss-list' },
@@ -828,7 +831,7 @@
 /* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -863,16 +866,7 @@
 	    }
 
 	    _createClass(CityList, [{
-	        key: 'componentWillMount',
-	        value: function componentWillMount() {
-	            var _this2 = this;
-
-	            $.getJSON('/list', function (res) {
-	                _this2.setState({ list: res.data });
-	            });
-	        }
-	    }, {
-	        key: 'render',
+	        key: "render",
 	        value: function render() {
 	            if (this.state.list) {
 	                var item = [];
@@ -885,9 +879,9 @@
 	                        var i = _step.value;
 
 	                        item.push(React.createElement(
-	                            'li',
-	                            { onClick: this.handleClick.bind(this), className: 'city-item',
-	                                'data-code': i.cityCode },
+	                            "li",
+	                            { onClick: this.handleClick.bind(this), className: "city-item",
+	                                "data-code": i.cityCode },
 	                            i.cityName
 	                        ));
 	                    }
@@ -907,21 +901,26 @@
 	                }
 
 	                return React.createElement(
-	                    'ul',
-	                    { className: 'list-box' },
-	                    item
+	                    "div",
+	                    { ref: "list" },
+	                    React.createElement(
+	                        "ul",
+	                        { className: "list-box" },
+	                        item
+	                    )
 	                );
 	            } else {
-	                return React.createElement(
-	                    'div',
-	                    null,
-	                    '\u52A0\u8F7D\u4E2D...'
-	                );
+	                return React.createElement("div", { className: "dom-hide" });
 	            }
 	        }
 	    }, {
-	        key: 'handleClick',
-	        value: function handleClick() {}
+	        key: "handleClick",
+	        value: function handleClick() {
+	            this.props.parentDom.refs.deptList.refs.list.className = "";
+	            this.props.parentDom.refs.bossList.refs.list.className = "";
+	            this.props.parentDom.setState({ cityName: event.target.innerHTML });
+	            this.setState({ list: null });
+	        }
 	    }]);
 
 	    return CityList;
@@ -965,7 +964,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  font: 14px \"Lucida Grande\", Helvetica, Arial, sans-serif; }\n\n.mask {\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  background-color: #f0f0f0;\n  z-index: 9;\n  display: none; }\n\n.dom-hide {\n  display: none; }\n\n.dom-show {\n  display: block; }\n\n#reactDom {\n  z-index: 99;\n  padding: 10px; }\n  #reactDom .loading-more-box {\n    border-top: 1px dashed #eeeeee;\n    height: 40px;\n    text-align: center;\n    line-height: 40px; }\n  #reactDom .app-color-blue {\n    color: #46b8da; }\n  #reactDom a {\n    color: #00B7FF; }\n  #reactDom .form-group {\n    background-color: #ffffff;\n    position: relative;\n    z-index: 99;\n    margin-bottom: 0px; }\n    #reactDom .form-group .app-row {\n      display: flex;\n      display: -webkit-flex;\n      -webkit-align-items: center;\n      -webkit-flex-direction: row; }\n      #reactDom .form-group .app-row .app-flex-3 {\n        -webkit-flex: 2.0;\n        min-width: 40px;\n        max-width: 40px; }\n      #reactDom .form-group .app-row .app-flex-7 {\n        -webkit-flex: 8.0;\n        width: 100%; }\n  #reactDom #cityName {\n    color: #000;\n    width: 40px;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis; }\n    #reactDom #cityName::after {\n      content: \"\";\n      background: #ffffff;\n      width: 6px;\n      height: 6px;\n      border: none;\n      display: block;\n      float: right;\n      margin-top: 5px;\n      margin-right: 5px;\n      transform: rotate(135deg);\n      border-top: .5px solid #000000;\n      border-right: .5px solid #000000; }\n  #reactDom ul.list-box {\n    list-style: none;\n    margin: 0;\n    padding: 0; }\n  #reactDom .city-item {\n    width: 100%;\n    height: 40px;\n    line-height: 40px;\n    border-bottom: .5px solid #e5e5e5; }\n\n@keyframes insertionFade {\n  0% {\n    width: 50%;\n    height: 50%; }\n  30% {\n    width: 70%;\n    height: 70%; }\n  90% {\n    width: 90%;\n    height: 90%; }\n  100% {\n    width: 100%;\n    height: 100%; } }\n  #reactDom .table-box {\n    z-index: 99;\n    position: relative;\n    margin-top: 10px; }\n    #reactDom .table-box .table {\n      background-color: #ffffff;\n      position: absolute;\n      top: 0px;\n      left: 0;\n      z-index: 99; }\n  #reactDom .search-state {\n    text-align: center;\n    height: 100px;\n    line-height: 100px; }\n  #reactDom .department-list {\n    position: relative;\n    width: 100%;\n    margin-top: 15px; }\n    #reactDom .department-list .list-title {\n      border-top: 1px solid #e5e5e5;\n      border-bottom: 1px dashed #e5e5e5;\n      height: 30px;\n      line-height: 30px; }\n    #reactDom .department-list ul {\n      width: 100%;\n      display: flex;\n      display: -webkit-flex;\n      -webkit-flex-direction: row;\n      list-style: none;\n      -webkit-flex-wrap: wrap;\n      padding-left: 0px;\n      margin-top: 15px; }\n      #reactDom .department-list ul li {\n        white-space: nowrap;\n        display: block;\n        width: 25%;\n        text-align: center; }\n  #reactDom .boss-list .list-title {\n    border-top: 1px solid #e5e5e5;\n    border-bottom: 1px dashed #e5e5e5;\n    height: 30px;\n    line-height: 30px; }\n  #reactDom .boss-list ul {\n    padding: 0px;\n    list-style: none; }\n    #reactDom .boss-list ul li.boss-item {\n      display: -webkit-flex;\n      padding-top: 15px; }\n      #reactDom .boss-list ul li.boss-item .boss-name-des {\n        padding-left: 10px; }\n        #reactDom .boss-list ul li.boss-item .boss-name-des .boss-name {\n          display: block;\n          color: #000; }\n        #reactDom .boss-list ul li.boss-item .boss-name-des .boss-des {\n          display: block;\n          color: #999;\n          font-size: 13px; }\n", ""]);
+	exports.push([module.id, "body {\n  font: 14px \"Lucida Grande\", Helvetica, Arial, sans-serif; }\n\n.mask {\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  background-color: #f0f0f0;\n  z-index: 9;\n  display: none; }\n\n.dom-hide {\n  display: none; }\n\n.dom-show {\n  display: block; }\n\n#reactDom {\n  z-index: 99;\n  padding: 10px; }\n  #reactDom .loading-more-box {\n    border-top: 1px dashed #eeeeee;\n    height: 40px;\n    text-align: center;\n    line-height: 40px; }\n  #reactDom .app-color-blue {\n    color: #46b8da; }\n  #reactDom a {\n    color: #00B7FF; }\n  #reactDom .form-group {\n    background-color: #ffffff;\n    position: relative;\n    z-index: 99;\n    margin-bottom: 0px; }\n    #reactDom .form-group .app-row {\n      display: flex;\n      display: -webkit-flex;\n      -webkit-align-items: center;\n      -webkit-flex-direction: row; }\n      #reactDom .form-group .app-row .app-flex-3 {\n        -webkit-flex: 2.0;\n        min-width: 40px;\n        max-width: 40px; }\n      #reactDom .form-group .app-row .app-flex-7 {\n        -webkit-flex: 8.0;\n        width: 100%; }\n  #reactDom #cityName {\n    color: #000;\n    width: 40px;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis; }\n    #reactDom #cityName::after {\n      content: \"\";\n      background: #ffffff;\n      width: 6px;\n      height: 6px;\n      border: none;\n      display: block;\n      float: right;\n      margin-top: 5px;\n      margin-right: 5px;\n      transform: rotate(135deg);\n      border-top: .5px solid #000000;\n      border-right: .5px solid #000000; }\n  #reactDom ul.list-box {\n    position: absolute;\n    list-style: none;\n    padding-left: 10px;\n    padding-right: 10px;\n    top: 0;\n    left: 0;\n    z-index: 999999;\n    width: 100%;\n    background-color: #ffffff; }\n  #reactDom .city-item {\n    width: 100%;\n    height: 40px;\n    line-height: 40px;\n    border-bottom: .5px solid #e5e5e5; }\n\n@keyframes insertionFade {\n  0% {\n    width: 50%;\n    height: 50%; }\n  30% {\n    width: 70%;\n    height: 70%; }\n  90% {\n    width: 90%;\n    height: 90%; }\n  100% {\n    width: 100%;\n    height: 100%; } }\n  #reactDom .table-box {\n    z-index: 99;\n    position: relative;\n    margin-top: 10px; }\n    #reactDom .table-box .table {\n      background-color: #ffffff;\n      position: absolute;\n      top: 0px;\n      left: 0;\n      z-index: 99; }\n  #reactDom .search-state {\n    text-align: center;\n    height: 100px;\n    line-height: 100px; }\n  #reactDom .department-list {\n    position: relative;\n    width: 100%;\n    margin-top: 15px; }\n    #reactDom .department-list .list-title {\n      border-top: 1px solid #e5e5e5;\n      border-bottom: 1px dashed #e5e5e5;\n      height: 30px;\n      line-height: 30px; }\n    #reactDom .department-list ul {\n      width: 100%;\n      display: flex;\n      display: -webkit-flex;\n      -webkit-flex-direction: row;\n      list-style: none;\n      -webkit-flex-wrap: wrap;\n      padding-left: 0px;\n      margin-top: 15px; }\n      #reactDom .department-list ul li {\n        white-space: nowrap;\n        display: block;\n        width: 25%;\n        text-align: center; }\n  #reactDom .boss-list .list-title {\n    border-top: 1px solid #e5e5e5;\n    border-bottom: 1px dashed #e5e5e5;\n    height: 30px;\n    line-height: 30px; }\n  #reactDom .boss-list ul {\n    padding: 0px;\n    list-style: none; }\n    #reactDom .boss-list ul li.boss-item {\n      display: -webkit-flex;\n      padding-top: 15px; }\n      #reactDom .boss-list ul li.boss-item .boss-name-des {\n        padding-left: 10px; }\n        #reactDom .boss-list ul li.boss-item .boss-name-des .boss-name {\n          display: block;\n          color: #000; }\n        #reactDom .boss-list ul li.boss-item .boss-name-des .boss-des {\n          display: block;\n          color: #999;\n          font-size: 13px; }\n", ""]);
 
 	// exports
 

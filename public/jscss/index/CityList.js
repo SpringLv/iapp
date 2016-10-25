@@ -1,16 +1,11 @@
 import Util from './Util'
 class CityList extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
             list: null
         }
-    }
-
-    componentWillMount() {
-        $.getJSON('/list', res => {
-            this.setState({list: res.data})
-        });
     }
 
     render() {
@@ -20,17 +15,22 @@ class CityList extends React.Component {
                 item.push(<li onClick={this.handleClick.bind(this)} className="city-item"
                               data-code={i.cityCode}>{i.cityName}</li>);
             }
-            return (<ul className="list-box">
-                    {item}
-                </ul>
+            return (<div ref="list">
+                        <ul className="list-box">
+                            {item}
+                        </ul>
+                    </div>
             )
         } else {
-            return <div>加载中...</div>
+            return <div className="dom-hide"></div>
         }
     }
 
     handleClick() {
-
+        this.props.parentDom.refs.deptList.refs.list.className = "";
+        this.props.parentDom.refs.bossList.refs.list.className = "";
+        this.props.parentDom.setState({cityName:event.target.innerHTML});
+        this.setState({list:null});
     }
 }
 
