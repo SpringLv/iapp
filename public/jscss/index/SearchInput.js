@@ -54,7 +54,7 @@ class SearchInput extends React.Component {
     }
 
     handleCityList() {
-        $.getJSON('/list', res => {
+        $.getJSON('/cityList', res => {
             this.refs.cityList.setState({list:res.data})
             this.refs.deptList.refs.list.className="dom-hide";
             this.refs.bossList.refs.list.className="dom-hide";

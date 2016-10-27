@@ -1,32 +1,28 @@
 class RecipientsList extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
-            list:[]
+        this.state = {
+            list: []
         }
     }
 
     render() {
         const items = [];
-        if(!this.state.list.length) return (<div></div>);
-        for(let item of this.state.list) {
+        if (!this.state.list.length) return (<div></div>);
+        this.state.list.forEach((item, index)=> {
             items.push(
-                <li onTap={this.todoSelected.bind(this)}>
-                    <span>{item.name}-{item.email}</span>
-                    <span>X</span>
+                <li>
+                    <span>{item.name}</span>
+                    <span onClick={this.props.parentDom.EditItem.bind(this.props.parentDom, item, index, "del")}>X</span>
                 </li>
             )
-        }
+        });
         return (
             <div ref="recipientsList" className="email-recipientsList-box">
                 <ul>{items}</ul>
             </div>
         )
-    }
-
-    todoSelected() {
-        console.log("todoSelected:"+event.target.innerText);
     }
 }
 export default RecipientsList;

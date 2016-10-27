@@ -10,23 +10,19 @@ class SelectList extends React.Component {
     render() {
         const items = [];
         if(!this.state.list.length) return (<div></div>);
-        for(let item of this.state.list) {
+        this.state.list.forEach((item,index)=> {
             items.push(
-                <li onTap={this.todoSelected.bind(this)}>
+                <li onClick={this.props.parentDom.EditItem.bind(this.props.parentDom,item,index,"add")}>
                     <span>{item.name}</span>
                     <span>{item.email}</span>
                 </li>
             )
-        }
+        })
         return (
             <div className="email-selectList-box">
                 <ul>{items}</ul>
             </div>
         )
-    }
-
-    todoSelected() {
-        console.log("todoSelected:"+event.target.innerText);
     }
 }
 export default SelectList;

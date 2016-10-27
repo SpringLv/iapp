@@ -6,12 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var list = require('./routes/list');
-var deptList = require('./routes/deptList');
-var searchList = require('./routes/searchList');
-var bossList = require('./routes/bossList');
+var routes = require('./routes/mapping');
+//var users = require('./routes/users');
+//var list = require('./routes/list');
+//var deptList = require('./routes/deptList');
+//var searchList = require('./routes/searchList');
+//var bossList = require('./routes/bossList');
 
 
 var app = express();
@@ -34,12 +34,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/index.html', routes);
-app.use('/users.html', users);
-app.use('/list', list);
-app.use('/deptList', deptList);
-app.use('/searchList',searchList);
-app.use('/bossList',bossList);
+//app.use('/list', list);
+//app.use('/deptList', deptList);
+//app.use('/searchList',searchList);
+//app.use('/bossList',bossList);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
