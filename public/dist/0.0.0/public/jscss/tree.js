@@ -457,6 +457,8 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var a = 0;
+
 	var CreateTree = function (_React$Component) {
 	    _inherits(CreateTree, _React$Component);
 
@@ -466,7 +468,8 @@
 	        var _this = _possibleConstructorReturn(this, (CreateTree.__proto__ || Object.getPrototypeOf(CreateTree)).call(this, props));
 
 	        _this.state = {
-	            list: []
+	            list: [],
+	            len: 0
 	        };
 	        return _this;
 	    }
@@ -483,13 +486,13 @@
 	    }, {
 	        key: "render",
 	        value: function render() {
-	            var node = this.state.list;
-	            if (!node.length) return React.createElement("div", null);
+	            if (!this.state.list.length) return React.createElement("div", null);
 	            function treeNodes(node) {
-	                console.log(_Util2.default.TREELENGTH);
+	                //this.setState({len:TOOL.TREELENGTH});
+	                CreateTree.ResetWidth(a);
 	                var temp = [];
 	                if (node.length > 1) {
-	                    node.forEach(function (item, index) {
+	                    node.forEach(function (item) {
 	                        temp.push(React.createElement(
 	                            "li",
 	                            null,
@@ -502,11 +505,11 @@
 	                                "ul",
 	                                null,
 	                                treeNodes(item.children)
-	                            ) : treeNodes(item.children, ++_Util2.default.TREELENGTH)
+	                            ) : treeNodes(item.children, ++a)
 	                        ));
 	                    });
 	                } else {
-	                    node.forEach(function (item, index) {
+	                    node.forEach(function (item) {
 	                        temp.push(React.createElement(
 	                            "ul",
 	                            null,
@@ -522,7 +525,7 @@
 	                                    "ul",
 	                                    null,
 	                                    treeNodes(item.children)
-	                                ) : treeNodes(item.children, ++_Util2.default.TREELENGTH)
+	                                ) : treeNodes(item.children, ++a)
 	                            )
 	                        ));
 	                    });
@@ -532,8 +535,13 @@
 	            return React.createElement(
 	                "div",
 	                { id: "tree" },
-	                treeNodes(node)
+	                treeNodes(this.state.list)
 	            );
+	        }
+	    }], [{
+	        key: "ResetWidth",
+	        value: function ResetWidth(data) {
+	            console.log(data);
 	        }
 	    }]);
 
@@ -578,7 +586,7 @@
 
 
 	// module
-	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0; }\n\n#tree a {\n  display: inline-block;\n  border: 1px solid #ccc;\n  padding: 5px 10px;\n  color: #666;\n  text-decoration: none;\n  padding: 10px;\n  -webkit-border-radius: 5px;\n  -moz-border-radius: 5px;\n  border-radius: 5px;\n  webkit-transition: all 0.5s;\n  -moz-transition: all 0.5s;\n  transition: all .3s; }\n\n#tree ul {\n  padding-top: 20px;\n  position: relative;\n  webkit-transition: all 0.5s;\n  -moz-transition: all 0.5s;\n  transition: all .3s; }\n  #tree ul ul::before {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    left: 50%;\n    border-left: 1px dashed #ccc;\n    width: 0;\n    height: 20px; }\n\n#tree li {\n  float: left;\n  list-style: none;\n  text-align: center;\n  position: relative;\n  padding: 20px 5px 0 5px;\n  webkit-transition: all 0.5s;\n  -moz-transition: all 0.5s;\n  transition: all .3s; }\n  #tree li::before, #tree li::after {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    right: 50%;\n    width: 50%;\n    height: 20px;\n    border-top: 1px dashed #ccc; }\n  #tree li:after {\n    right: auto;\n    left: 50%;\n    border-left: 1px dashed #ccc; }\n  #tree li:first-child::before {\n    border: 0 none; }\n  #tree li:first-child::after {\n    -webkit-border-radius: 10px 0 0 0;\n    -moz-border-radius: 10px 0 0 0;\n    border-radius: 10px 0 0 0; }\n  #tree li:last-child::after {\n    border: 0 none; }\n  #tree li:last-child::before {\n    border-right: 1px dashed #ccc;\n    -webkit-border-radius: 0 10px 0 0;\n    -moz-border-radius: 0 10px 0 0;\n    border-radius: 0 10px 0 0; }\n  #tree li:only-child {\n    padding-top: 0; }\n    #tree li:only-child::before, #tree li:only-child::after {\n      border: none; }\n  #tree li a:hover {\n    background-color: #c8e4f8;\n    color: #000;\n    border: 1px dashed #94a0b4; }\n    #tree li a:hover + ul li a {\n      background-color: #c8e4f8;\n      color: #000;\n      border: 1px dashed #94a0b4; }\n\n#tree li a:hover + ul li:after,\n#tree li a:hover + ul li:before,\n#tree li a:hover + ul::before,\n#tree li a:hover + ul ul::before {\n  border-color: #94a0b4; }\n", ""]);
+	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0; }\n\n#tree a {\n  display: inline-block;\n  border: 1px solid #ccc;\n  padding: 5px 10px;\n  color: #666;\n  text-decoration: none;\n  padding: 10px;\n  -webkit-border-radius: 5px;\n  -moz-border-radius: 5px;\n  border-radius: 5px;\n  webkit-transition: all 0.5s;\n  -moz-transition: all 0.5s;\n  transition: all .3s; }\n\n#tree ul {\n  padding-top: 20px;\n  position: relative;\n  webkit-transition: all 0.5s;\n  -moz-transition: all 0.5s;\n  transition: all .3s; }\n  #tree ul ul::before {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    left: 50%;\n    border-left: 1px dashed #ccc;\n    width: 0;\n    height: 20px; }\n\n#tree li {\n  float: left;\n  list-style: none;\n  text-align: center;\n  position: relative;\n  padding: 20px 5px 0 5px;\n  webkit-transition: all 0.5s;\n  -moz-transition: all 0.5s;\n  transition: all .3s; }\n  #tree li::before, #tree li::after {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    right: 50%;\n    width: 50%;\n    height: 20px;\n    border-top: 1px dashed #ccc; }\n  #tree li:after {\n    right: auto;\n    left: 50%;\n    border-left: 1px dashed #ccc; }\n  #tree li:first-child::before {\n    border: 0 none; }\n  #tree li:first-child::after {\n    -webkit-border-radius: 10px 0 0 0;\n    -moz-border-radius: 10px 0 0 0;\n    border-radius: 10px 0 0 0; }\n  #tree li:last-child::after {\n    border: 0 none; }\n  #tree li:last-child::before {\n    border-right: 1px dashed #ccc;\n    -webkit-border-radius: 0 10px 0 0;\n    -moz-border-radius: 0 10px 0 0;\n    border-radius: 0 10px 0 0; }\n  #tree li:only-child {\n    padding-top: 0; }\n    #tree li:only-child::before, #tree li:only-child::after {\n      border: none; }\n  #tree li a:hover {\n    background-color: #fff;\n    color: #000;\n    border: 1px solid #94a0b4;\n    -moz-box-shadow: 2px 2px 5px #333333;\n    -webkit-box-shadow: 2px 2px 5px #333333;\n    box-shadow: 2px 2px 5px #333333; }\n    #tree li a:hover + ul li a {\n      background-color: #fff;\n      color: #000;\n      border: 1px solid #94a0b4;\n      -moz-box-shadow: 2px 2px 5px #333333;\n      -webkit-box-shadow: 2px 2px 5px #333333;\n      box-shadow: 2px 2px 5px #333333; }\n\n#tree li a:hover + ul li:after,\n#tree li a:hover + ul li:before,\n#tree li a:hover + ul::before,\n#tree li a:hover + ul ul::before {\n  border-color: #94a0b4; }\n", ""]);
 
 	// exports
 

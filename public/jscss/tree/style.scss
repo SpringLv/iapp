@@ -92,13 +92,19 @@
 
     a {
       &:hover {
-        background-color: #c8e4f8;
+        background-color: #fff;
         color: #000;
-        border: 1px dashed #94a0b4;
+        border: 1px solid #94a0b4;
+        -moz-box-shadow:2px 2px 5px #333333;
+        -webkit-box-shadow:2px 2px 5px #333333;
+        box-shadow:2px 2px 5px #333333;
         & + ul li a {
-          background-color: #c8e4f8;
+          background-color: #fff;
           color: #000;
-          border: 1px dashed #94a0b4;
+          border: 1px solid #94a0b4;
+          -moz-box-shadow:2px 2px 5px #333333;
+          -webkit-box-shadow:2px 2px 5px #333333;
+          box-shadow:2px 2px 5px #333333;
         }
       }
     }
