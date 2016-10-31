@@ -54,15 +54,15 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _SearchInput = __webpack_require__(8);
+	var _SearchInput = __webpack_require__(11);
 
 	var _SearchInput2 = _interopRequireDefault(_SearchInput);
 
-	var _Util = __webpack_require__(10);
+	var _Util = __webpack_require__(13);
 
 	var _Util2 = _interopRequireDefault(_Util);
 
-	var _style = __webpack_require__(15);
+	var _style = __webpack_require__(18);
 
 	var _style2 = _interopRequireDefault(_style);
 
@@ -89,7 +89,10 @@
 /* 3 */,
 /* 4 */,
 /* 5 */,
-/* 6 */
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */
 /***/ function(module, exports) {
 
 	/*
@@ -145,7 +148,7 @@
 
 
 /***/ },
-/* 7 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -397,7 +400,7 @@
 
 
 /***/ },
-/* 8 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
@@ -408,23 +411,23 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _SearchList = __webpack_require__(9);
+	var _SearchList = __webpack_require__(12);
 
 	var _SearchList2 = _interopRequireDefault(_SearchList);
 
-	var _Util = __webpack_require__(10);
+	var _Util = __webpack_require__(13);
 
 	var _Util2 = _interopRequireDefault(_Util);
 
-	var _Department = __webpack_require__(11);
+	var _Department = __webpack_require__(14);
 
 	var _Department2 = _interopRequireDefault(_Department);
 
-	var _BossList = __webpack_require__(12);
+	var _BossList = __webpack_require__(15);
 
 	var _BossList2 = _interopRequireDefault(_BossList);
 
-	var _CityList = __webpack_require__(14);
+	var _CityList = __webpack_require__(17);
 
 	var _CityList2 = _interopRequireDefault(_CityList);
 
@@ -545,7 +548,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 9 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
@@ -703,7 +706,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 10 */
+/* 13 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -731,10 +734,11 @@
 	};
 	Util.BOSSLIST_DATA = [];
 	Util.TIMER = null;
+	Util.TREELENGTH = 0;
 	exports.default = Util;
 
 /***/ },
-/* 11 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
@@ -840,7 +844,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 12 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
@@ -851,11 +855,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _Util = __webpack_require__(10);
+	var _Util = __webpack_require__(13);
 
 	var _Util2 = _interopRequireDefault(_Util);
 
-	var _ScrollTouch = __webpack_require__(13);
+	var _ScrollTouch = __webpack_require__(16);
 
 	var _ScrollTouch2 = _interopRequireDefault(_ScrollTouch);
 
@@ -1021,7 +1025,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 13 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
@@ -1032,7 +1036,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _Util = __webpack_require__(10);
+	var _Util = __webpack_require__(13);
 
 	var _Util2 = _interopRequireDefault(_Util);
 
@@ -1139,7 +1143,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 14 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
@@ -1150,7 +1154,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _Util = __webpack_require__(10);
+	var _Util = __webpack_require__(13);
 
 	var _Util2 = _interopRequireDefault(_Util);
 
@@ -1241,16 +1245,16 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 15 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(16);
+	var content = __webpack_require__(19);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -1267,10 +1271,10 @@
 	}
 
 /***/ },
-/* 16 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 
 

@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#tree {
+  a {
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    color: #666;
+    text-decoration: none;
+    padding: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all .3s;
+  }
+  ul {
+    padding-top: 20px;
+    position: relative;
+    webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all .3s;
+    ul {
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        border-left: 1px dashed #ccc;
+        width: 0;
+        height: 20px;
+      }
+    }
+  }
+
+  li {
+    float: left;
+    list-style: none;
+    text-align: center;
+    position: relative;
+    padding: 20px 5px 0 5px;
+    webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all .3s;
+    &::before, &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 50%;
+      width: 50%;
+      height: 20px;
+      border-top: 1px dashed #ccc;
+    }
+    &:after {
+      right: auto;
+      left: 50%;
+      border-left: 1px dashed #ccc;
+    }
+    &:first-child {
+      &::before {
+        border: 0 none;
+      }
+      &::after {
+        -webkit-border-radius: 10px 0 0 0;
+        -moz-border-radius: 10px 0 0 0;
+        border-radius: 10px 0 0 0;
+      }
+    }
+    &:last-child {
+      &::after {
+        border: 0 none;
+      }
+
+      &::before {
+        border-right: 1px dashed #ccc;
+        -webkit-border-radius: 0 10px 0 0;
+        -moz-border-radius: 0 10px 0 0;
+        border-radius: 0 10px 0 0;
+      }
+    }
+
+    &:only-child {
+      padding-top: 0;
+      &::before, &::after {
+        border: none;
+      }
+    }
+
+    a {
+      &:hover {
+        background-color: #c8e4f8;
+        color: #000;
+        border: 1px dashed #94a0b4;
+        & + ul li a {
+          background-color: #c8e4f8;
+          color: #000;
+          border: 1px dashed #94a0b4;
+        }
+      }
+    }
+
+  }
+
+}
+
+#tree li a:hover + ul li:after,
+#tree li a:hover + ul li:before,
+#tree li a:hover + ul::before,
+#tree li a:hover + ul ul::before {
+  border-color: #94a0b4;
+}

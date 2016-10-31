@@ -58,7 +58,7 @@
 
 	var _DoSearch2 = _interopRequireDefault(_DoSearch);
 
-	var _style = __webpack_require__(4);
+	var _style = __webpack_require__(7);
 
 	var _style2 = _interopRequireDefault(_style);
 
@@ -91,15 +91,15 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _InputBox = __webpack_require__(17);
+	var _InputBox = __webpack_require__(4);
 
 	var _InputBox2 = _interopRequireDefault(_InputBox);
 
-	var _SelectList = __webpack_require__(18);
+	var _SelectList = __webpack_require__(5);
 
 	var _SelectList2 = _interopRequireDefault(_SelectList);
 
-	var _RecipientsList = __webpack_require__(19);
+	var _RecipientsList = __webpack_require__(6);
 
 	var _RecipientsList2 = _interopRequireDefault(_RecipientsList);
 
@@ -139,8 +139,6 @@
 	        value: function InputBoxInput() {
 	            var val = event.target.value;
 	            this.refs.inputBox.setState({ inputValue: val });
-	            val = this.refs.inputBox.state.inputValue;
-	            console.log(val);
 	            if (val.split(";").length > 1) {
 	                this.MoreKeysSearch(val);
 	                return;
@@ -204,13 +202,210 @@
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var InputBox = function (_React$Component) {
+	    _inherits(InputBox, _React$Component);
+
+	    function InputBox(props) {
+	        _classCallCheck(this, InputBox);
+
+	        var _this = _possibleConstructorReturn(this, (InputBox.__proto__ || Object.getPrototypeOf(InputBox)).call(this, props));
+
+	        _this.state = {
+	            inputValue: ""
+	        };
+	        return _this;
+	    }
+
+	    _createClass(InputBox, [{
+	        key: "render",
+	        value: function render() {
+	            return React.createElement(
+	                "div",
+	                { ref: "inputBox", className: "email-input-box" },
+	                React.createElement("input", { type: "text", className: "email-input",
+	                    onInput: this.props.parentDom.InputBoxInput.bind(this.props.parentDom),
+	                    value: this.state.inputValue })
+	            );
+	        }
+	    }]);
+
+	    return InputBox;
+	}(React.Component);
+
+	exports.default = InputBox;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SelectList = function (_React$Component) {
+	    _inherits(SelectList, _React$Component);
+
+	    function SelectList(props) {
+	        _classCallCheck(this, SelectList);
+
+	        var _this = _possibleConstructorReturn(this, (SelectList.__proto__ || Object.getPrototypeOf(SelectList)).call(this, props));
+
+	        _this.state = {
+	            list: []
+	        };
+	        return _this;
+	    }
+
+	    _createClass(SelectList, [{
+	        key: "render",
+	        value: function render() {
+	            var _this2 = this;
+
+	            var items = [];
+	            if (!this.state.list.length) return React.createElement("div", null);
+	            this.state.list.forEach(function (item, index) {
+	                items.push(React.createElement(
+	                    "li",
+	                    { onClick: _this2.props.parentDom.EditItem.bind(_this2.props.parentDom, item, index, "add") },
+	                    React.createElement(
+	                        "span",
+	                        null,
+	                        item.name
+	                    ),
+	                    React.createElement(
+	                        "span",
+	                        null,
+	                        item.email
+	                    )
+	                ));
+	            });
+	            return React.createElement(
+	                "div",
+	                { className: "email-selectList-box" },
+	                React.createElement(
+	                    "ul",
+	                    null,
+	                    items
+	                )
+	            );
+	        }
+	    }]);
+
+	    return SelectList;
+	}(React.Component);
+
+	exports.default = SelectList;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var RecipientsList = function (_React$Component) {
+	    _inherits(RecipientsList, _React$Component);
+
+	    function RecipientsList(props) {
+	        _classCallCheck(this, RecipientsList);
+
+	        var _this = _possibleConstructorReturn(this, (RecipientsList.__proto__ || Object.getPrototypeOf(RecipientsList)).call(this, props));
+
+	        _this.state = {
+	            list: []
+	        };
+	        return _this;
+	    }
+
+	    _createClass(RecipientsList, [{
+	        key: "render",
+	        value: function render() {
+	            var _this2 = this;
+
+	            var items = [];
+	            if (!this.state.list.length) return React.createElement("div", null);
+	            this.state.list.forEach(function (item, index) {
+	                items.push(React.createElement(
+	                    "li",
+	                    null,
+	                    React.createElement(
+	                        "span",
+	                        null,
+	                        item.name
+	                    ),
+	                    React.createElement(
+	                        "span",
+	                        { onClick: _this2.props.parentDom.EditItem.bind(_this2.props.parentDom, item, index, "del") },
+	                        "X"
+	                    )
+	                ));
+	            });
+	            return React.createElement(
+	                "div",
+	                { ref: "recipientsList", className: "email-recipientsList-box" },
+	                React.createElement(
+	                    "ul",
+	                    null,
+	                    items
+	                )
+	            );
+	        }
+	    }]);
+
+	    return RecipientsList;
+	}(React.Component);
+
+	exports.default = RecipientsList;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(5);
+	var content = __webpack_require__(8);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -227,10 +422,10 @@
 	}
 
 /***/ },
-/* 5 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 
 
@@ -241,7 +436,7 @@
 
 
 /***/ },
-/* 6 */
+/* 9 */
 /***/ function(module, exports) {
 
 	/*
@@ -297,7 +492,7 @@
 
 
 /***/ },
-/* 7 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -547,212 +742,6 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
-
-/***/ },
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var InputBox = function (_React$Component) {
-	    _inherits(InputBox, _React$Component);
-
-	    function InputBox(props) {
-	        _classCallCheck(this, InputBox);
-
-	        var _this = _possibleConstructorReturn(this, (InputBox.__proto__ || Object.getPrototypeOf(InputBox)).call(this, props));
-
-	        _this.state = {
-	            inputValue: ""
-	        };
-	        return _this;
-	    }
-
-	    _createClass(InputBox, [{
-	        key: "render",
-	        value: function render() {
-	            return React.createElement(
-	                "div",
-	                { ref: "inputBox", className: "email-input-box" },
-	                React.createElement("input", { type: "text", className: "email-input",
-	                    onInput: this.props.parentDom.InputBoxInput.bind(this.props.parentDom),
-	                    value: this.state.inputValue })
-	            );
-	        }
-	    }]);
-
-	    return InputBox;
-	}(React.Component);
-
-	exports.default = InputBox;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var SelectList = function (_React$Component) {
-	    _inherits(SelectList, _React$Component);
-
-	    function SelectList(props) {
-	        _classCallCheck(this, SelectList);
-
-	        var _this = _possibleConstructorReturn(this, (SelectList.__proto__ || Object.getPrototypeOf(SelectList)).call(this, props));
-
-	        _this.state = {
-	            list: []
-	        };
-	        return _this;
-	    }
-
-	    _createClass(SelectList, [{
-	        key: "render",
-	        value: function render() {
-	            var _this2 = this;
-
-	            var items = [];
-	            if (!this.state.list.length) return React.createElement("div", null);
-	            this.state.list.forEach(function (item, index) {
-	                items.push(React.createElement(
-	                    "li",
-	                    { onClick: _this2.props.parentDom.EditItem.bind(_this2.props.parentDom, item, index, "add") },
-	                    React.createElement(
-	                        "span",
-	                        null,
-	                        item.name
-	                    ),
-	                    React.createElement(
-	                        "span",
-	                        null,
-	                        item.email
-	                    )
-	                ));
-	            });
-	            return React.createElement(
-	                "div",
-	                { className: "email-selectList-box" },
-	                React.createElement(
-	                    "ul",
-	                    null,
-	                    items
-	                )
-	            );
-	        }
-	    }]);
-
-	    return SelectList;
-	}(React.Component);
-
-	exports.default = SelectList;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var RecipientsList = function (_React$Component) {
-	    _inherits(RecipientsList, _React$Component);
-
-	    function RecipientsList(props) {
-	        _classCallCheck(this, RecipientsList);
-
-	        var _this = _possibleConstructorReturn(this, (RecipientsList.__proto__ || Object.getPrototypeOf(RecipientsList)).call(this, props));
-
-	        _this.state = {
-	            list: []
-	        };
-	        return _this;
-	    }
-
-	    _createClass(RecipientsList, [{
-	        key: "render",
-	        value: function render() {
-	            var _this2 = this;
-
-	            var items = [];
-	            if (!this.state.list.length) return React.createElement("div", null);
-	            this.state.list.forEach(function (item, index) {
-	                items.push(React.createElement(
-	                    "li",
-	                    null,
-	                    React.createElement(
-	                        "span",
-	                        null,
-	                        item.name
-	                    ),
-	                    React.createElement(
-	                        "span",
-	                        { onClick: _this2.props.parentDom.EditItem.bind(_this2.props.parentDom, item, index, "del") },
-	                        "X"
-	                    )
-	                ));
-	            });
-	            return React.createElement(
-	                "div",
-	                { ref: "recipientsList", className: "email-recipientsList-box" },
-	                React.createElement(
-	                    "ul",
-	                    null,
-	                    items
-	                )
-	            );
-	        }
-	    }]);
-
-	    return RecipientsList;
-	}(React.Component);
-
-	exports.default = RecipientsList;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }
 /******/ ]);

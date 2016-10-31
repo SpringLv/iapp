@@ -22,8 +22,6 @@ class DoSearch extends React.Component {
     InputBoxInput() {
         let val = event.target.value;
         this.refs.inputBox.setState({inputValue:val});
-        val = this.refs.inputBox.state.inputValue
-        console.log(val)
         if(val.split(";").length>1){
             this.MoreKeysSearch(val);
             return;

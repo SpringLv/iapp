@@ -2,14 +2,44 @@ var express = require('express');
 var router = express.Router();
 
 /* get index */
-router.get('/index.html', function (req, res, next) {
+router.get(['/index.html','/'], function (req, res, next) {
     res.render('index.html', {title: 'index'});
 });
 
 /* get email */
 router.get('/email.html', function (req, res, next) {
-    //console.log(req.param("name"));
     res.render('email.html', {title: 'email'});
+});
+
+/* get email */
+router.get('/tree.html', function (req, res, next) {
+    res.render('tree.html', {title: 'tree'});
+});
+
+/* get email */
+router.post('/treeList', function (req, res, next) {
+    res.json({"data":[
+        {"name":"一级节点","children":[
+            {"name":"二级节点","children":[
+                {"name":"三级节点","children":[]},
+                {"name":"三级节点","children":[]},
+                {"name":"三级节点","children":[
+                    {"name":"四级节点","children":[]},
+                    {"name":"四级节点","children":[]},
+                    {"name":"四级节点","children":[]}
+                    ]
+                }
+                ]
+            },
+            {"name":"二级节点","children":[
+                {"name":"三级节点","children":[]},
+                {"name":"三级节点","children":[]},
+                {"name":"三级节点","children":[]}
+                ]
+            }
+            ]
+        }
+    ]})
 });
 
 router.post('/emailList', function (req, res, next) {

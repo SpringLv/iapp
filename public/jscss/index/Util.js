@@ -18,4 +18,5 @@ Util.MOVEPOINT = {
 }
 Util.BOSSLIST_DATA=[];
 Util.TIMER=null;
+Util.TREELENGTH=0;
 export default Util;
