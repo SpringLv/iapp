@@ -6,6 +6,11 @@ router.get(['/index.html','/'], function (req, res, next) {
     res.render('index.html', {title: 'index'});
 });
 
+/* get reduxer */
+router.get(['/reduxer.html','/'], function (req, res, next) {
+    res.render('reduxer.html', {title: 'reduxer'});
+});
+
 /* get email */
 router.get('/email.html', function (req, res, next) {
     res.render('email.html', {title: 'email'});

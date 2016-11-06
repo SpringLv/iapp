@@ -19,7 +19,6 @@ class CreateTree extends React.Component {
     render() {
         if(!this.state.list.length) return <div></div>;
         function treeNodes(node) {
-            //this.setState({len:TOOL.TREELENGTH});
             CreateTree.ResetWidth(a);
             let temp = [];
             if (node.length > 1) {

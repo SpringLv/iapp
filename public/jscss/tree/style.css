@@ -2,6 +2,10 @@
   margin: 0;
   padding: 0; }
 
+#reactDom {
+  width: 100%;
+  overflow: hidden; }
+
 #tree a {
   display: inline-block;
   border: 1px solid #ccc;
