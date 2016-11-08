@@ -1,0 +1,27 @@
+.menu-tree {
+  width: 300px; }
+  .menu-tree > ul {
+    padding-left: 20px;
+    list-style: none; }
+    .menu-tree > ul ul {
+      padding-left: 20px;
+      list-style: none; }
+  .menu-tree li {
+    padding: 3px 0px; }
+    .menu-tree li > a {
+      color: #333333;
+      display: flex;
+      flex-direction: row;
+      align-items: center; }
+      .menu-tree li > a:hover, .menu-tree li > a:active, .menu-tree li > a:visited, .menu-tree li > a:focus {
+        color: #00B7FF;
+        text-decoration: inherit; }
+      .menu-tree li > a span:first-child {
+        margin-right: 5px;
+        width: 0;
+        height: 0;
+        border-top: 3px solid transparent;
+        border-left: 3px solid #00B7FF;
+        border-bottom: 3px solid transparent; }
+
+/*# sourceMappingURL=MenuTree.css.map */

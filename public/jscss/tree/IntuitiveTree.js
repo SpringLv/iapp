@@ -1,32 +1,28 @@
-import TOOL from '../index/Util'
-let a=0;
-
-class CreateTree extends React.Component {
+let LastNodeNum = 0;
+class IntuitiveTree extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            list: [],
-            len:0
+            nodeList: []
         }
     }
 
     componentWillMount() {
-        $.post("/treeList").then(res=> {
-            this.setState({list: res.data});
-        })
+        console.log(this.props.nodeList);
     }
 
     render() {
-        if(!this.state.list.length) return <div></div>;
+        if(!this.props.nodeList.length) return <div></div>;
         function treeNodes(node) {
-            CreateTree.ResetWidth(a);
+            IntuitiveTree.ResetWidth(LastNodeNum);
             let temp = [];
+            console.log(node.length)
             if (node.length > 1) {
                 node.forEach((item)=> {
                     temp.push(
                         <li>
                             <a href="javascript:;">{item.name}</a>
-                            {item.children.length ? (<ul>{treeNodes(item.children)}</ul>) : treeNodes(item.children,++a)}
+                            {item.children.length > 1  ? (<ul>{treeNodes(item.children)}</ul>) : treeNodes(item.children,++LastNodeNum)}
                         </li>
                     )
                 });
@@ -36,7 +32,7 @@ class CreateTree extends React.Component {
                         <ul>
                             <li>
                                 <a href="javascript:;">{item.name}</a>
-                                {item.children.length ? (<ul>{treeNodes(item.children)}</ul>) : treeNodes(item.children,++a)}
+                                {item.children.length > 1 ? (<ul>{treeNodes(item.children)}</ul>) : treeNodes(item.children,++LastNodeNum)}
                             </li>
                         </ul>
                     )
@@ -45,15 +41,14 @@ class CreateTree extends React.Component {
             return temp;
         }
         return (
-            <div id="tree">
-                {treeNodes(this.state.list)}
+            <div className="intuitive-tree">
+                {treeNodes(this.props.nodeList)}
             </div>
         )
 
     }
-
     static ResetWidth(data) {
         console.log(data);
     }
 }
-export default CreateTree;
+export default IntuitiveTree;

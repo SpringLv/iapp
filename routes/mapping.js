@@ -31,13 +31,37 @@ router.post('/treeList', function (req, res, next) {
                 {"name":"三级节点","children":[
                     {"name":"四级节点","children":[]},
                     {"name":"四级节点","children":[]},
-                    {"name":"四级节点","children":[]}
+                    {"name":"四级节点","children":[
+                            {"name":"一级节点","children":[
+                            {"name":"二级节点","children":[
+                                {"name":"三级节点","children":[]},
+                                {"name":"三级节点","children":[]},
+                                {"name":"三级节点","children":[
+                                    {"name":"四级节点","children":[]},
+                                    {"name":"四级节点","children":[]},
+                                    {"name":"四级节点","children":[]}
+                                ]
+                                }
+                            ]
+                            },
+                            {"name":"二级节点","children":[
+                                {"name":"三级节点","children":[]},
+                                {"name":"三级节点","children":[]},
+                                {"name":"三级节点","children":[]}
+                                ]
+                            }
+                            ]
+                        }
+                        ]
+                    }
                     ]
                 }
                 ]
             },
             {"name":"二级节点","children":[
-                {"name":"三级节点","children":[]},
+                {"name":"三级节点","children":[
+                    {"name":"三级节点","children":[]}
+                ]},
                 {"name":"三级节点","children":[]},
                 {"name":"三级节点","children":[]}
                 ]
