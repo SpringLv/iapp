@@ -12,6 +12,7 @@ class MenuTree extends React.Component {
     }
 
     render() {
+        let __this = this;
         if(!this.props.nodeList.length) return <div></div>;
         function treeNodes(node) {
             MenuTree.ResetWidth(LastNodeNum);
@@ -21,7 +22,8 @@ class MenuTree extends React.Component {
                     temp.push(
                         <li>
                             <a href="javascript:;">
-                                <span className="tree-icon icon-left"></span>
+                                <span className="tree-icon" onClick={__this.handleClick.bind(__this)}></span>
+                                <span className="dom-hide"><div></div></span>
                                 <span>{item.name}</span>
                             </a>
                             {item.children.length > 1 ? (<ul>{treeNodes(item.children)}</ul>) : treeNodes(item.children,++LastNodeNum)}
@@ -34,7 +36,8 @@ class MenuTree extends React.Component {
                         <ul>
                             <li>
                                 <a href="javascript:;">
-                                    <span className="tree-icon icon-left"></span>
+                                    <span className="tree-icon" onClick={__this.handleClick.bind(__this)}></span>
+                                    <span className="dom-hide"><div></div></span>
                                     <span>{item.name}</span>
                                 </a>
                                 {item.children.length > 1 ? (<ul>{treeNodes(item.children)}</ul>) : treeNodes(item.children,++LastNodeNum)}
@@ -53,7 +56,15 @@ class MenuTree extends React.Component {
 
     }
     static ResetWidth(data) {
-        console.log(data);
+        //console.log(data);
+    }
+    handleClick() {
+        let dom = event.target;
+        dom.nextElementSibling.className = "icon-clip-rotate";
+        this.props.getNodeList(()=>{
+            dom.className = "tree-icon icon-down";
+            dom.nextElementSibling.className = "dom-hide";
+        });
     }
 }
 export default MenuTree;

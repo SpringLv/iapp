@@ -16,7 +16,6 @@ class IntuitiveTree extends React.Component {
         function treeNodes(node) {
             IntuitiveTree.ResetWidth(LastNodeNum);
             let temp = [];
-            console.log(node.length)
             if (node.length > 1) {
                 node.forEach((item)=> {
                     temp.push(
@@ -48,7 +47,7 @@ class IntuitiveTree extends React.Component {
 
     }
     static ResetWidth(data) {
-        console.log(data);
+        //console.log(data);
     }
 }
 export default IntuitiveTree;

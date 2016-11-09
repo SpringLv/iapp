@@ -16,20 +16,28 @@ class Main extends React.Component {
         })
     }
     render() {
+        console.log(this.state.nodeList)
         return(
             <div className="main-page" ref="main">
                 <IntuitiveTree
                     nodeList={this.state.nodeList}
-                    parentDom={this}
-                    >
+                    getNodeList={this.getNodeList.bind(this)} >
                 </IntuitiveTree>
                 <MenuTree
                     nodeList={this.state.nodeList}
-                    parentDom={this}
-                    >
+                    getNodeList={this.getNodeList.bind(this)} >
                 </MenuTree>
             </div>
         )
+    }
+    getNodeList(callback) {
+        let k = setTimeout(()=>{
+            callback();
+            //$.post("/treeList").then(res=> {
+            //    this.setState({nodeList: []});
+            //});
+            clearTimeout(k);
+        },3000);
     }
 }
 export default Main;

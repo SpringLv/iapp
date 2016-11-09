@@ -40,9 +40,8 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(ReactDOM) {'use strict';
@@ -55,7 +54,7 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _Main = __webpack_require__(41);
+	var _Main = __webpack_require__(36);
 
 	var _Main2 = _interopRequireDefault(_Main);
 
@@ -65,22 +64,25 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-
-/***/ 1:
+/* 1 */
 /***/ function(module, exports) {
 
 	module.exports = ReactDOM;
 
 /***/ },
-
-/***/ 2:
+/* 2 */
 /***/ function(module, exports) {
 
 	module.exports = React;
 
 /***/ },
-
-/***/ 9:
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */
 /***/ function(module, exports) {
 
 	/*
@@ -136,8 +138,7 @@
 
 
 /***/ },
-
-/***/ 10:
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -389,8 +390,125 @@
 
 
 /***/ },
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
 
-/***/ 37:
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _IntuitiveTree = __webpack_require__(37);
+
+	var _IntuitiveTree2 = _interopRequireDefault(_IntuitiveTree);
+
+	var _MenuTree = __webpack_require__(38);
+
+	var _MenuTree2 = _interopRequireDefault(_MenuTree);
+
+	var _IntuitiveTree3 = __webpack_require__(39);
+
+	var _IntuitiveTree4 = _interopRequireDefault(_IntuitiveTree3);
+
+	var _MenuTree3 = __webpack_require__(41);
+
+	var _MenuTree4 = _interopRequireDefault(_MenuTree3);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Main = function (_React$Component) {
+	    _inherits(Main, _React$Component);
+
+	    function Main(props) {
+	        _classCallCheck(this, Main);
+
+	        var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
+
+	        _this.state = {
+	            nodeList: []
+	        };
+	        return _this;
+	    }
+
+	    _createClass(Main, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+
+	            $.post("/treeList").then(function (res) {
+	                _this2.setState({ nodeList: res.data });
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            console.log(this.state.nodeList);
+	            return React.createElement(
+	                'div',
+	                { className: 'main-page', ref: 'main' },
+	                React.createElement(_IntuitiveTree2.default, {
+	                    nodeList: this.state.nodeList,
+	                    getNodeList: this.getNodeList.bind(this) }),
+	                React.createElement(_MenuTree2.default, {
+	                    nodeList: this.state.nodeList,
+	                    getNodeList: this.getNodeList.bind(this) })
+	            );
+	        }
+	    }, {
+	        key: 'getNodeList',
+	        value: function getNodeList(callback) {
+	            var k = setTimeout(function () {
+	                callback();
+	                //$.post("/treeList").then(res=> {
+	                //    this.setState({nodeList: []});
+	                //});
+	                clearTimeout(k);
+	            }, 3000);
+	        }
+	    }]);
+
+	    return Main;
+	}(React.Component);
+
+	exports.default = Main;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
@@ -435,7 +553,6 @@
 	            function treeNodes(node) {
 	                IntuitiveTree.ResetWidth(LastNodeNum);
 	                var temp = [];
-	                console.log(node.length);
 	                if (node.length > 1) {
 	                    node.forEach(function (item) {
 	                        temp.push(React.createElement(
@@ -486,7 +603,7 @@
 	    }], [{
 	        key: "ResetWidth",
 	        value: function ResetWidth(data) {
-	            console.log(data);
+	            //console.log(data);
 	        }
 	    }]);
 
@@ -497,8 +614,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-
-/***/ 38:
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
@@ -539,6 +655,7 @@
 	    }, {
 	        key: "render",
 	        value: function render() {
+	            var __this = this;
 	            if (!this.props.nodeList.length) return React.createElement("div", null);
 	            function treeNodes(node) {
 	                MenuTree.ResetWidth(LastNodeNum);
@@ -551,7 +668,12 @@
 	                            React.createElement(
 	                                "a",
 	                                { href: "javascript:;" },
-	                                React.createElement("span", { className: "tree-icon icon-left" }),
+	                                React.createElement("span", { className: "tree-icon", onClick: __this.handleClick.bind(__this) }),
+	                                React.createElement(
+	                                    "span",
+	                                    { className: "dom-hide" },
+	                                    React.createElement("div", null)
+	                                ),
 	                                React.createElement(
 	                                    "span",
 	                                    null,
@@ -576,7 +698,12 @@
 	                                React.createElement(
 	                                    "a",
 	                                    { href: "javascript:;" },
-	                                    React.createElement("span", { className: "tree-icon icon-left" }),
+	                                    React.createElement("span", { className: "tree-icon", onClick: __this.handleClick.bind(__this) }),
+	                                    React.createElement(
+	                                        "span",
+	                                        { className: "dom-hide" },
+	                                        React.createElement("div", null)
+	                                    ),
 	                                    React.createElement(
 	                                        "span",
 	                                        null,
@@ -600,10 +727,20 @@
 	                treeNodes(this.props.nodeList)
 	            );
 	        }
+	    }, {
+	        key: "handleClick",
+	        value: function handleClick() {
+	            var dom = event.target;
+	            dom.nextElementSibling.className = "icon-clip-rotate";
+	            this.props.getNodeList(function () {
+	                dom.className = "tree-icon icon-down";
+	                dom.nextElementSibling.className = "dom-hide";
+	            });
+	        }
 	    }], [{
 	        key: "ResetWidth",
 	        value: function ResetWidth(data) {
-	            console.log(data);
+	            //console.log(data);
 	        }
 	    }]);
 
@@ -614,98 +751,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-
-/***/ 41:
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _IntuitiveTree = __webpack_require__(37);
-
-	var _IntuitiveTree2 = _interopRequireDefault(_IntuitiveTree);
-
-	var _MenuTree = __webpack_require__(38);
-
-	var _MenuTree2 = _interopRequireDefault(_MenuTree);
-
-	var _IntuitiveTree3 = __webpack_require__(42);
-
-	var _IntuitiveTree4 = _interopRequireDefault(_IntuitiveTree3);
-
-	var _MenuTree3 = __webpack_require__(44);
-
-	var _MenuTree4 = _interopRequireDefault(_MenuTree3);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Main = function (_React$Component) {
-	    _inherits(Main, _React$Component);
-
-	    function Main(props) {
-	        _classCallCheck(this, Main);
-
-	        var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
-
-	        _this.state = {
-	            nodeList: []
-	        };
-	        return _this;
-	    }
-
-	    _createClass(Main, [{
-	        key: 'componentWillMount',
-	        value: function componentWillMount() {
-	            var _this2 = this;
-
-	            $.post("/treeList").then(function (res) {
-	                _this2.setState({ nodeList: res.data });
-	            });
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return React.createElement(
-	                'div',
-	                { className: 'main-page', ref: 'main' },
-	                React.createElement(_IntuitiveTree2.default, {
-	                    nodeList: this.state.nodeList,
-	                    parentDom: this
-	                }),
-	                React.createElement(_MenuTree2.default, {
-	                    nodeList: this.state.nodeList,
-	                    parentDom: this
-	                })
-	            );
-	        }
-	    }]);
-
-	    return Main;
-	}(React.Component);
-
-	exports.default = Main;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ },
-
-/***/ 42:
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(43);
+	var content = __webpack_require__(40);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -725,8 +777,7 @@
 	}
 
 /***/ },
-
-/***/ 43:
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -740,14 +791,13 @@
 
 
 /***/ },
-
-/***/ 44:
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(45);
+	var content = __webpack_require__(42);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -767,8 +817,7 @@
 	}
 
 /***/ },
-
-/***/ 45:
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -776,11 +825,10 @@
 
 
 	// module
-	exports.push([module.id, ".menu-tree {\n  width: 300px; }\n  .menu-tree > ul {\n    padding-left: 20px;\n    list-style: none; }\n    .menu-tree > ul ul {\n      padding-left: 20px;\n      list-style: none; }\n  .menu-tree li {\n    padding: 3px 0px; }\n    .menu-tree li > a {\n      color: #333333;\n      display: flex;\n      flex-direction: row;\n      align-items: center; }\n      .menu-tree li > a:hover, .menu-tree li > a:active, .menu-tree li > a:visited, .menu-tree li > a:focus {\n        color: #00B7FF;\n        text-decoration: inherit; }\n      .menu-tree li > a span:first-child {\n        margin-right: 5px;\n        width: 0;\n        height: 0;\n        border-top: 3px solid transparent;\n        border-left: 3px solid #00B7FF;\n        border-bottom: 3px solid transparent; }\n", ""]);
+	exports.push([module.id, ".menu-tree {\n  width: 300px; }\n  .menu-tree > ul {\n    padding-left: 20px;\n    list-style: none; }\n    .menu-tree > ul ul {\n      padding-left: 20px;\n      list-style: none; }\n  .menu-tree li {\n    padding: 3px 0px; }\n    .menu-tree li > a {\n      color: #333333;\n      display: flex;\n      flex-direction: row;\n      align-items: center; }\n      .menu-tree li > a:hover, .menu-tree li > a:active, .menu-tree li > a:visited, .menu-tree li > a:focus {\n        color: #00B7FF;\n        text-decoration: inherit; }\n      .menu-tree li > a span:first-child {\n        margin-right: 5px;\n        width: 0;\n        height: 0;\n        border-top: 3px solid transparent;\n        border-left: 4px solid #00B7FF;\n        border-bottom: 3px solid transparent;\n        transition: all .5s ease-in-out; }\n      .menu-tree li > a span:nth-child(2) {\n        margin-right: 5px; }\n      .menu-tree li > a .icon-down {\n        transform: rotate(90deg); }\n\n.dom-hide {\n  display: none; }\n\n.icon-clip-rotate {\n  width: 10px;\n  height: 10px; }\n  .icon-clip-rotate > div {\n    border-radius: 100%;\n    margin: 2px;\n    border: 2px solid #333;\n    border-bottom-color: transparent;\n    height: 10px;\n    width: 10px;\n    background: 0 0 !important;\n    display: inline-block;\n    -webkit-animation: rotate .75s 0s linear infinite;\n    animation: rotate .75s 0s linear infinite; }\n\n@keyframes rotate {\n  0% {\n    -webkit-transform: rotate(0deg) scale(1);\n    transform: rotate(0deg) scale(1); }\n  50% {\n    -webkit-transform: rotate(180deg) scale(0.6);\n    transform: rotate(180deg) scale(0.6); }\n  100% {\n    -webkit-transform: rotate(360deg) scale(1);\n    transform: rotate(360deg) scale(1); } }\n\n@keyframes rotate-once {\n  from {\n    transform: rotate(0deg); }\n  to {\n    transform: rotate(90deg); } }\n", ""]);
 
 	// exports
 
 
 /***/ }
-
-/******/ });
+/******/ ]);
