@@ -1,27 +1,24 @@
-let LastNodeNum = 0;
 class IntuitiveTree extends React.Component {
+
     constructor(props) {
         super(props);
-        this.state = {
-            nodeList: []
-        }
+        this.LastNodeNum = 0;
     }
-
-    componentWillMount() {
-        console.log(this.props.nodeList);
-    }
-
     render() {
-        if(!this.props.nodeList.length) return <div></div>;
+        let __this = this;
+        __this.LastNodeNum = 0;
+        if (!this.props.nodeList.length) return <div></div>;
         function treeNodes(node) {
-            IntuitiveTree.ResetWidth(LastNodeNum);
+            __this.ResetWidth(__this.LastNodeNum);
             let temp = [];
             if (node.length > 1) {
                 node.forEach((item)=> {
                     temp.push(
                         <li>
                             <a href="javascript:;">{item.name}</a>
-                            {item.children.length > 1  ? (<ul>{treeNodes(item.children)}</ul>) : treeNodes(item.children,++LastNodeNum)}
+                            {item.children&&item.children.length > 1 ?
+                                (<ul>{treeNodes(item.children)}</ul>) :
+                                treeNodes(item.children,item.children&&item.children.length==0 && ++__this.LastNodeNum)}
                         </li>
                     )
                 });
@@ -31,7 +28,9 @@ class IntuitiveTree extends React.Component {
                         <ul>
                             <li>
                                 <a href="javascript:;">{item.name}</a>
-                                {item.children.length > 1 ? (<ul>{treeNodes(item.children)}</ul>) : treeNodes(item.children,++LastNodeNum)}
+                                {item.children&&item.children.length > 1 ?
+                                    (<ul>{treeNodes(item.children)}</ul>) :
+                                    treeNodes(item.children,item.children&&item.children.length==0 && ++__this.LastNodeNum)}
                             </li>
                         </ul>
                     )
@@ -39,6 +38,7 @@ class IntuitiveTree extends React.Component {
             }
             return temp;
         }
+
         return (
             <div className="intuitive-tree">
                 {treeNodes(this.props.nodeList)}
@@ -46,8 +46,12 @@ class IntuitiveTree extends React.Component {
         )
 
     }
-    static ResetWidth(data) {
-        //console.log(data);
-    }
+
+    ResetWidth(data) {}
 }
+
+IntuitiveTree.propTypes = {
+    nodeList: React.PropTypes.array.isRequired
+}
+
 export default IntuitiveTree;

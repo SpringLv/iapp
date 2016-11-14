@@ -22,7 +22,7 @@ router.get('/tree.html', function (req, res, next) {
 });
 
 /* get email */
-router.post('/treeList', function (req, res, next) {
+router.get('/treeList', function (req, res, next) {
     res.json({"data":[
         {"name":"一级节点","children":[
             {"name":"二级节点","children":[

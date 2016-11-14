@@ -1,21 +1,15 @@
-let LastNodeNum = 0;
 class MenuTree extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            nodeList: []
-        }
-    }
-
-    componentWillMount() {
-        console.log(this.props.nodeList);
+        this.LastNodeNum = 0;
     }
 
     render() {
         let __this = this;
-        if(!this.props.nodeList.length) return <div></div>;
+        __this.LastNodeNum = 0;
+        if (!this.props.nodeList.length) return <div></div>;
         function treeNodes(node) {
-            MenuTree.ResetWidth(LastNodeNum);
+            __this.ResetWidth(__this.LastNodeNum);
             let temp = [];
             if (node.length > 1) {
                 node.forEach((item)=> {
@@ -26,7 +20,9 @@ class MenuTree extends React.Component {
                                 <span className="dom-hide"><div></div></span>
                                 <span>{item.name}</span>
                             </a>
-                            {item.children.length > 1 ? (<ul>{treeNodes(item.children)}</ul>) : treeNodes(item.children,++LastNodeNum)}
+                            {item.children && item.children.length > 1 ?
+                                (<ul>{treeNodes(item.children)}</ul>) :
+                                treeNodes(item.children, item.children && item.children.length == 0 && ++__this.LastNodeNum)}
                         </li>
                     )
                 });
@@ -40,7 +36,9 @@ class MenuTree extends React.Component {
                                     <span className="dom-hide"><div></div></span>
                                     <span>{item.name}</span>
                                 </a>
-                                {item.children.length > 1 ? (<ul>{treeNodes(item.children)}</ul>) : treeNodes(item.children,++LastNodeNum)}
+                                {item.children && item.children.length > 1 ?
+                                    (<ul>{treeNodes(item.children)}</ul>) :
+                                    treeNodes(item.children, item.children && item.children.length == 0 && ++__this.LastNodeNum)}
                             </li>
                         </ul>
                     )
@@ -48,6 +46,7 @@ class MenuTree extends React.Component {
             }
             return temp;
         }
+
         return (
             <div className="menu-tree">
                 {treeNodes(this.props.nodeList)}
@@ -55,16 +54,22 @@ class MenuTree extends React.Component {
         )
 
     }
-    static ResetWidth(data) {
-        //console.log(data);
+
+    ResetWidth(data) {
     }
+
     handleClick() {
         let dom = event.target;
         dom.nextElementSibling.className = "icon-clip-rotate";
-        this.props.getNodeList(()=>{
+        this.props.getNodeList(()=> {
             dom.className = "tree-icon icon-down";
             dom.nextElementSibling.className = "dom-hide";
         });
     }
 }
+MenuTree.propTypes = {
+    nodeList: React.PropTypes.array.isRequired,
+    getNodeList: React.PropTypes.func.isRequired
+}
+
 export default MenuTree;

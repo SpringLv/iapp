@@ -16,9 +16,12 @@
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
+    "redux-thunk": "^2.1.0",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "babel-preset-stage-0": "^6.16.0",
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "glob": "^7.1.1",
