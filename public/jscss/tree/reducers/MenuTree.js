@@ -4,7 +4,7 @@ import {
     REQUEST_POSTS, RECEIVE_POSTS
 } from '../actions/MenuTree'
 
-const selectedNode = (state = 'reactjs', action=null) => {
+const selectedNode = (state = 'ReactJS', action = null) => {
     switch (action.type) {
         case SELECT_NODE:
             return action.node;
@@ -17,7 +17,7 @@ const posts = (state = {
     isFetching: false,
     didInvalidate: false,
     items: []
-}, action=null) => {
+}, action = null) => {
     switch (action.type) {
         case INVALIDATE_NODE:
             return {
@@ -43,7 +43,7 @@ const posts = (state = {
     }
 };
 
-const postsByNode = (state = { }, action=null) => {
+const postsByNode = (state = {}, action = null) => {
     switch (action.type) {
         case INVALIDATE_NODE:
         case RECEIVE_POSTS:

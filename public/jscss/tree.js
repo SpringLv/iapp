@@ -7,15 +7,16 @@ import createLogger from 'redux-logger'
 import Tree from './tree/containers/Main';
 import MenuTree from './tree/reducers/MenuTree'
 
-const middleware = [ thunk ]
-if (process.env.NODE_ENV !== 'production') {
-    middleware.push(createLogger())
-}
+const middleware = [thunk];
+middleware.push(createLogger());
+//if (process.env.NODE_ENV !== 'production') {
+//    middleware.push(createLogger());
+//}
 
 const store = createStore(
     MenuTree,
     applyMiddleware(...middleware)
-)
+);
 
 ReactDOM.render(
     <Provider store={store}>

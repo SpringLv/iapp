@@ -17,24 +17,26 @@ class Main extends React.Component {
             dispatch(fetchPostsIfNeeded(selectedNode))
         }
     }
+
     render() {
-        return(
+        return (
             <div className="main-page" ref="main">
                 <IntuitiveTree
                     nodeList={this.props.posts}>
                 </IntuitiveTree>
                 <MenuTree
                     nodeList={this.props.posts}
-                    getNodeList={this.getNodeList.bind(this)} >
+                    getNodeList={this.getNodeList.bind(this)}>
                 </MenuTree>
             </div>
         )
     }
+
     getNodeList(callback) {
-        let k = setTimeout(()=>{
+        let k = setTimeout(()=> {
             callback();
             clearTimeout(k);
-        },3000);
+        }, 3000);
     }
 }
 Main.porpTypes = {

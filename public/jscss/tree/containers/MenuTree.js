@@ -1,4 +1,11 @@
-class MenuTree extends React.Component {
+import React, { Component, PropTypes } from 'react'
+class MenuTree extends Component {
+
+    static propTypes = {
+        nodeList: PropTypes.array.isRequired,
+        getNodeList: PropTypes.func.isRequired
+    };
+
     constructor(props) {
         super(props);
         this.LastNodeNum = 0;
@@ -15,7 +22,7 @@ class MenuTree extends React.Component {
                 node.forEach((item)=> {
                     temp.push(
                         <li>
-                            <a href="javascript:;">
+                            <a href="javascript:void(0)">
                                 <span className="tree-icon" onClick={__this.handleClick.bind(__this)}></span>
                                 <span className="dom-hide"><div></div></span>
                                 <span>{item.name}</span>
@@ -31,7 +38,7 @@ class MenuTree extends React.Component {
                     temp.push(
                         <ul>
                             <li>
-                                <a href="javascript:;">
+                                <a href="javascript:void(0)">
                                     <span className="tree-icon" onClick={__this.handleClick.bind(__this)}></span>
                                     <span className="dom-hide"><div></div></span>
                                     <span>{item.name}</span>
@@ -55,8 +62,7 @@ class MenuTree extends React.Component {
 
     }
 
-    ResetWidth(data) {
-    }
+    ResetWidth(data) {}
 
     handleClick() {
         let dom = event.target;
@@ -66,10 +72,6 @@ class MenuTree extends React.Component {
             dom.nextElementSibling.className = "dom-hide";
         });
     }
-}
-MenuTree.propTypes = {
-    nodeList: React.PropTypes.array.isRequired,
-    getNodeList: React.PropTypes.func.isRequired
 }
 
 export default MenuTree;

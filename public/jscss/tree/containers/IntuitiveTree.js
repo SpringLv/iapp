@@ -1,9 +1,16 @@
-class IntuitiveTree extends React.Component {
+import React, { Component, PropTypes } from 'react'
+
+class IntuitiveTree extends Component {
+
+    static propTypes = {
+        nodeList: PropTypes.array.isRequired
+    };
 
     constructor(props) {
         super(props);
         this.LastNodeNum = 0;
     }
+
     render() {
         let __this = this;
         __this.LastNodeNum = 0;
@@ -15,10 +22,10 @@ class IntuitiveTree extends React.Component {
                 node.forEach((item)=> {
                     temp.push(
                         <li>
-                            <a href="javascript:;">{item.name}</a>
-                            {item.children&&item.children.length > 1 ?
+                            <a href="javascript:void(0)">{item.name}</a>
+                            {item.children && item.children.length > 1 ?
                                 (<ul>{treeNodes(item.children)}</ul>) :
-                                treeNodes(item.children,item.children&&item.children.length==0 && ++__this.LastNodeNum)}
+                                treeNodes(item.children, item.children && item.children.length == 0 && ++__this.LastNodeNum)}
                         </li>
                     )
                 });
@@ -27,10 +34,10 @@ class IntuitiveTree extends React.Component {
                     temp.push(
                         <ul>
                             <li>
-                                <a href="javascript:;">{item.name}</a>
-                                {item.children&&item.children.length > 1 ?
+                                <a href="javascript:void(0)">{item.name}</a>
+                                {item.children && item.children.length > 1 ?
                                     (<ul>{treeNodes(item.children)}</ul>) :
-                                    treeNodes(item.children,item.children&&item.children.length==0 && ++__this.LastNodeNum)}
+                                    treeNodes(item.children, item.children && item.children.length == 0 && ++__this.LastNodeNum)}
                             </li>
                         </ul>
                     )
@@ -47,11 +54,8 @@ class IntuitiveTree extends React.Component {
 
     }
 
-    ResetWidth(data) {}
-}
-
-IntuitiveTree.propTypes = {
-    nodeList: React.PropTypes.array.isRequired
+    ResetWidth(data) {
+    }
 }
 
 export default IntuitiveTree;
