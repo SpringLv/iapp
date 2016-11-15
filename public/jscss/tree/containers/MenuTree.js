@@ -1,77 +1,70 @@
-import React, { Component, PropTypes } from 'react'
-class MenuTree extends Component {
+import MenuTree from '../components/MenuTree'
+import IntuitiveTree from '../components/IntuitiveTree'
+import MenuTreeStyle from '../components/MenuTree.scss'
+import IntuitiveTreeStyle from '../components/IntuitiveTree.scss'
+import { connect } from 'react-redux'
+import { selectNode, fetchPostsIfNeeded, invalidateNode } from '../actions/MenuTree'
 
-    static propTypes = {
-        nodeList: PropTypes.array.isRequired,
-        getNodeList: PropTypes.func.isRequired
-    };
+class Main extends React.Component {
+    componentDidMount() {
+        const { dispatch, selectedNode } = this.props;
+        dispatch(fetchPostsIfNeeded(selectedNode))
+    }
 
-    constructor(props) {
-        super(props);
-        this.LastNodeNum = 0;
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.selectedNode !== this.props.selectedNode) {
+            const { dispatch, selectedNode } = nextProps;
+            dispatch(fetchPostsIfNeeded(selectedNode))
+        }
     }
 
     render() {
-        let __this = this;
-        __this.LastNodeNum = 0;
-        if (!this.props.nodeList.length) return <div></div>;
-        function treeNodes(node) {
-            __this.ResetWidth(__this.LastNodeNum);
-            let temp = [];
-            if (node.length > 1) {
-                node.forEach((item)=> {
-                    temp.push(
-                        <li>
-                            <a href="javascript:void(0)">
-                                <span className="tree-icon" onClick={__this.handleClick.bind(__this)}></span>
-                                <span className="dom-hide"><div></div></span>
-                                <span>{item.name}</span>
-                            </a>
-                            {item.children && item.children.length > 1 ?
-                                (<ul>{treeNodes(item.children)}</ul>) :
-                                treeNodes(item.children, item.children && item.children.length == 0 && ++__this.LastNodeNum)}
-                        </li>
-                    )
-                });
-            } else {
-                node.forEach((item)=> {
-                    temp.push(
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <span className="tree-icon" onClick={__this.handleClick.bind(__this)}></span>
-                                    <span className="dom-hide"><div></div></span>
-                                    <span>{item.name}</span>
-                                </a>
-                                {item.children && item.children.length > 1 ?
-                                    (<ul>{treeNodes(item.children)}</ul>) :
-                                    treeNodes(item.children, item.children && item.children.length == 0 && ++__this.LastNodeNum)}
-                            </li>
-                        </ul>
-                    )
-                });
-            }
-            return temp;
-        }
-
         return (
-            <div className="menu-tree">
-                {treeNodes(this.props.nodeList)}
+            <div className="main-page" ref="main">
+                <IntuitiveTree
+                    nodeList={this.props.posts}>
+                </IntuitiveTree>
+                <MenuTree
+                    nodeList={this.props.posts}
+                    getNodeList={this.getNodeList.bind(this)}>
+                </MenuTree>
             </div>
         )
-
     }
 
-    ResetWidth(data) {}
-
-    handleClick() {
-        let dom = event.target;
-        dom.nextElementSibling.className = "icon-clip-rotate";
-        this.props.getNodeList(()=> {
-            dom.className = "tree-icon icon-down";
-            dom.nextElementSibling.className = "dom-hide";
-        });
+    getNodeList(callback) {
+        let k = setTimeout(()=> {
+            callback();
+            clearTimeout(k);
+        }, 3000);
     }
 }
+Main.porpTypes = {
+    selectedNode: React.PropTypes.string.isRequired,
+    posts: React.PropTypes.array.isRequired,
+    isFetching: React.PropTypes.bool.isRequired,
+    lastUpdated: React.PropTypes.number,
+    dispatch: React.PropTypes.func.isRequired
+};
 
-export default MenuTree;
+
+const mapStateToProps = state => {
+    const { selectedNode, postsByNode } = state;
+    const {
+        isFetching,
+        lastUpdated,
+        items: posts
+        } = postsByNode[selectedNode] || {
+        isFetching: true,
+        items: []
+    }
+
+    return {
+        selectedNode,
+        posts,
+        isFetching,
+        lastUpdated
+    }
+};
+
+export default connect(mapStateToProps)(Main);
