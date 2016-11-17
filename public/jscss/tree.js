@@ -8,7 +8,7 @@ import Tree from './tree/containers/MenuTree';
 import MenuTree from './tree/reducers/MenuTree'
 
 const middleware = [thunk];
-middleware.push(createLogger());
+//middleware.push(createLogger());
 //if (process.env.NODE_ENV !== 'production') {
 //    middleware.push(createLogger());
 //}

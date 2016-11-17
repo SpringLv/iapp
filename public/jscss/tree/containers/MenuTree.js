@@ -49,7 +49,9 @@ Main.porpTypes = {
 
 
 const mapStateToProps = state => {
+
     const { selectedNode, postsByNode } = state;
+    console.log("------mapStateToProps-------\n",postsByNode)
     const {
         isFetching,
         lastUpdated,

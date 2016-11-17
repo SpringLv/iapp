@@ -71,7 +71,7 @@ router.get('/treeList', function (req, res, next) {
     ]})
 });
 
-router.post('/emailList', function (req, res, next) {
+router.get('/emailList', function (req, res, next) {
     var name = req.param("name");
     var data = [];
     switch (name) {

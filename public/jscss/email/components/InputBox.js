@@ -1,9 +1,6 @@
 class InputBox extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            inputValue: ""
-        }
     }
 
     render() {
@@ -11,7 +8,7 @@ class InputBox extends React.Component {
             <div ref="inputBox" className="email-input-box">
                 <input type="text" className="email-input"
                        onInput={this.props.parentDom.InputBoxInput.bind(this.props.parentDom)}
-                       value={this.state.inputValue} />
+                       defaultvalue="" />
             </div>
         )
     }
