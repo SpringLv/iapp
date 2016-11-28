@@ -1,14 +1,17 @@
+"use strict";
 class InputBox extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     render() {
+        const { InputBoxInput, _this } = this.props;
+        const color = {color:'red'};
+        if (!InputBoxInput || !_this) {
+            return <div style={color}>'InputBoxInput' and '_this' is required</div>
+        }
         return (
-            <div ref="inputBox" className="email-input-box">
+            <div className="email-input-box">
                 <input type="text" className="email-input"
-                       onInput={this.props.parentDom.InputBoxInput.bind(this.props.parentDom)}
-                       defaultvalue="" />
+                       onInput={InputBoxInput.bind(_this)}
+                       defaultvalue=""/>
             </div>
         )
     }

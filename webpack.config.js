@@ -34,11 +34,11 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel',
                 query: {
-                    presets: ['es2015', 'stage-0', 'react']
+                    presets: ['react', 'es2015', 'stage-0', 'stage-1']
                 }
             },
             {test: /\.css$/, loader: "style!css"},
-            {test: /\.scss$/, loader: "style!css!sass"}
+            {test: /\.less/, loader: "style!css!less"}
         ]
     }
     //,
@@ -61,6 +61,6 @@ module.exports = {
     //]
     ,externals: {
         'react': 'React',
-        'react-dom': 'ReactDOM'
+        'react-dom': 'ReactDOM',
     }
 };

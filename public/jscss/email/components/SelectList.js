@@ -9,7 +9,7 @@ class SelectList extends React.Component {
         if(!this.props.items.length) return (<div></div>);
         this.props.items.forEach((item,index)=> {
             items.push(
-                <li onClick={this.props.parentDom.EditItem.bind(this.props.parentDom,item,index,"add")}>
+                <li onClick={this.props.EditItem.bind(this.props._this,item,index,"add")}>
                     <span>{item.name}</span>
                     <span>{item.email}</span>
                 </li>

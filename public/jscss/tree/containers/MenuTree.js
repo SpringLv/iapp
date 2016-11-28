@@ -1,7 +1,7 @@
 import MenuTree from '../components/MenuTree'
 import IntuitiveTree from '../components/IntuitiveTree'
-import MenuTreeStyle from '../components/MenuTree.scss'
-import IntuitiveTreeStyle from '../components/IntuitiveTree.scss'
+import MenuTreeStyle from '../components/MenuTree.less'
+import IntuitiveTreeStyle from '../components/IntuitiveTree.less'
 import { connect } from 'react-redux'
 import { selectNode, fetchPostsIfNeeded, invalidateNode } from '../actions/MenuTree'
 

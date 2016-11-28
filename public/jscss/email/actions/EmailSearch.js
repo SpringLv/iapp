@@ -10,10 +10,10 @@ export const addItem = item => {
     }
 };
 
-export const delItem = item => {
+export const delItem = index => {
     return {
         type : DEL_ITEM,
-        item
+        index
     }
 };
 export const doSearch = name => {
@@ -22,7 +22,6 @@ export const doSearch = name => {
         name
     }
 };
-
 
 export const Ajax = name => dispatch => {
     dispatch(doSearch(name));
@@ -33,5 +32,5 @@ export const Ajax = name => dispatch => {
 
 export const result = json => ({
     type: SEARCH_RESULT,
-    items: json.data
+    searchList: json.data
 });

@@ -7,8 +7,8 @@ router.get(['/index.html','/'], function (req, res, next) {
 });
 
 /* get reduxer */
-router.get(['/reduxer.html','/'], function (req, res, next) {
-    res.render('reduxer.html', {title: 'reduxer'});
+router.get(['/paper.html','/'], function (req, res, next) {
+    res.render('paper.html', {title: 'paper'});
 });
 
 /* get email */
@@ -195,6 +195,46 @@ router.get('/bossList', function (req, res, next) {
 
 /* ajax cityList */
 router.get('/cityList', function (req, res, next) {
+    res.json({
+        'data': [
+            {'cityName': '上海', 'cityCode': '310100'},
+            {'cityName': '北京', 'cityCode': '110100'},
+            {'cityName': '广州', 'cityCode': '410100'},
+            {'cityName': '杭州', 'cityCode': '330100'},
+            {'cityName': '南京', 'cityCode': '320100'},
+            {'cityName': '大连', 'cityCode': '210200'},
+            {'cityName': '沈阳', 'cityCode': '200100'}
+        ]
+    });
+});
+
+router.get('/blog/chapter', function (req, res, next) {
+    res.json({
+        'data': [
+            {'cityName': '上海', 'cityCode': '310100'},
+            {'cityName': '北京', 'cityCode': '110100'},
+            {'cityName': '广州', 'cityCode': '410100'},
+            {'cityName': '杭州', 'cityCode': '330100'},
+            {'cityName': '南京', 'cityCode': '320100'},
+            {'cityName': '大连', 'cityCode': '210200'},
+            {'cityName': '沈阳', 'cityCode': '200100'}
+        ]
+    });
+});
+router.get('/blog/section', function (req, res, next) {
+    res.json({
+        'data': [
+            {'cityName': '上海', 'cityCode': '310100'},
+            {'cityName': '北京', 'cityCode': '110100'},
+            {'cityName': '广州', 'cityCode': '410100'},
+            {'cityName': '杭州', 'cityCode': '330100'},
+            {'cityName': '南京', 'cityCode': '320100'},
+            {'cityName': '大连', 'cityCode': '210200'},
+            {'cityName': '沈阳', 'cityCode': '200100'}
+        ]
+    });
+});
+router.get('/blog/text', function (req, res, next) {
     res.json({
         'data': [
             {'cityName': '上海', 'cityCode': '310100'},
