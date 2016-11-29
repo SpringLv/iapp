@@ -1,5 +1,5 @@
 class Paper extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
 
@@ -8,13 +8,13 @@ class Paper extends React.Component {
         if (!this.props.items.length) return (<div></div>);
         this.props.items.forEach((item, index)=> {
             items.push(
-                <li>
-                    <span onClick={this.props.EditItem.bind(this.props._this,item, index)}>{item.name}</span>
+                <li onClick={this.props.EditItem.bind(this.props._this,item, index)}>
+                    <span>{item.name}</span>
                 </li>
             )
         });
         return (
-            <div>
+            <div className={this.props.className}>
                 <ul>{items}</ul>
             </div>
         )

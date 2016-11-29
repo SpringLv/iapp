@@ -1,5 +1,6 @@
 import PaperList from "../components/Paper"
 import { connect } from "react-redux"
+import style from "../components/Paper.less"
 import {
     SEARCH_CHAPTER,
     SEARCH_SECTION,
@@ -18,7 +19,7 @@ class Paper extends React.Component {
     }
 
     componentWillMount() {
-        this.props.getList(searchChapter,SEARCH_CHAPTER_RESULT,'/cityList',1);
+
     }
 
     render() {
@@ -29,7 +30,7 @@ class Paper extends React.Component {
         });
         const sectionItems = this.props.sectionList.map(item=> {
             item.name = item.cityName;
-            item.id = item.cityCode
+            item.id = item.cityCode;
             return item;
         });
         const textItems = this.props.textList.map(item=> {
@@ -39,41 +40,57 @@ class Paper extends React.Component {
         });
         return (
             <div>
-                <PaperList
-                    className="blog-chapter"
-                    items={chapterItems||[]}
-                    _this={this}
-                    EditItem={this.searchSection}
-                    >
-                </PaperList>
-                <PaperList
-                    className="blog-section"
-                    items={sectionItems||[]}
-                    _this={this}
-                    EditItem={this.searchText}
-                    >
-                </PaperList>
-                <PaperList
-                    className="blog-section"
-                    items={textItems||[]}
-                    _this={this}
-                    EditItem={this.renderText}
-                    >
-                </PaperList>
+                <div className="blog-top" ref="topper"></div>
+                <div className="blog-container" ref="container">
+                    <div className="blog-toolbar"
+                         ref="toolbar"
+                         onClick={this.searchChapter.bind(this,"","")}
+                        >
+                        目录
+                    </div>
+                    <div className="blog-body" ref="content">
+                        <PaperList
+                            className="blog-chapter"
+                            items={chapterItems||[]}
+                            _this={this}
+                            EditItem={this.searchSection}
+                            >
+                        </PaperList>
+                        <PaperList
+                            className="blog-section"
+                            items={sectionItems||[]}
+                            _this={this}
+                            EditItem={this.searchText}
+                            >
+                        </PaperList>
+                        <PaperList
+                            className="blog-text"
+                            items={textItems||[]}
+                            _this={this}
+                            EditItem={this.renderText}
+                            >
+                        </PaperList>
+                    </div>
+                </div>
             </div>
         )
     }
 
+    searchChapter(item, index) {
+        this.props.getList(searchChapter,SEARCH_CHAPTER_RESULT,'/cityList',1);
+    }
+
     searchSection(item, index) {
-        this.props.getList(searchSection,SEARCH_SECTION_RESULT,'/cityList',item.id);
+        this.props.getList(searchSection,SEARCH_SECTION_RESULT,'/blog/section',item.id);
     }
     searchText(item, index) {
-        this.props.getList(searchText,SEARCH_TEXT_RESULT,'/cityList',item.id);
+        this.props.getList(searchText,SEARCH_TEXT_RESULT,'/blog/text',item.id);
     }
     renderText(item, index) {
         //console.log(item, index);
         //this.props.getList(searchText,SEARCH_TEXT,'/cityList',item.id);
     }
+
 }
 const mapStateToProps = state => {
     return {
