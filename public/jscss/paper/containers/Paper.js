@@ -41,36 +41,31 @@ class Paper extends React.Component {
         return (
             <div>
                 <div className="blog-top" ref="topper"></div>
-                <div className="blog-container" ref="container">
-                    <div className="blog-toolbar"
-                         ref="toolbar"
-                         onClick={this.searchChapter.bind(this,"","")}
+                <div className="blog-toolbar" ref="toolbar">
+                    <span onClick={this.searchChapter.bind(this,"","")}>11</span>
+                </div>
+                <div className="blog-body" ref="content">
+                    <PaperList
+                        className="blog-chapter"
+                        items={chapterItems||[]}
+                        _this={this}
+                        EditItem={this.searchSection}
                         >
-                        目录
-                    </div>
-                    <div className="blog-body" ref="content">
-                        <PaperList
-                            className="blog-chapter"
-                            items={chapterItems||[]}
-                            _this={this}
-                            EditItem={this.searchSection}
-                            >
-                        </PaperList>
-                        <PaperList
-                            className="blog-section"
-                            items={sectionItems||[]}
-                            _this={this}
-                            EditItem={this.searchText}
-                            >
-                        </PaperList>
-                        <PaperList
-                            className="blog-text"
-                            items={textItems||[]}
-                            _this={this}
-                            EditItem={this.renderText}
-                            >
-                        </PaperList>
-                    </div>
+                    </PaperList>
+                    <PaperList
+                        className="blog-section"
+                        items={sectionItems||[]}
+                        _this={this}
+                        EditItem={this.searchText}
+                        >
+                    </PaperList>
+                    <PaperList
+                        className="blog-text"
+                        items={textItems||[]}
+                        _this={this}
+                        EditItem={this.renderText}
+                        >
+                    </PaperList>
                 </div>
             </div>
         )
@@ -83,12 +78,26 @@ class Paper extends React.Component {
     searchSection(item, index) {
         this.props.getList(searchSection,SEARCH_SECTION_RESULT,'/blog/section',item.id);
     }
+
     searchText(item, index) {
         this.props.getList(searchText,SEARCH_TEXT_RESULT,'/blog/text',item.id);
     }
+
     renderText(item, index) {
         //console.log(item, index);
         //this.props.getList(searchText,SEARCH_TEXT,'/cityList',item.id);
+    }
+
+    compositionStyle() {
+        const windowHeight = $(window).height();
+        const topHeight = 40;
+        $(".blog-chapter ul").height(windowHeight-topHeight);
+        $(".blog-section ul").height(windowHeight-topHeight);
+        $(".blog-text ul").height(windowHeight-topHeight);
+    }
+
+    componentDidUpdate() {
+        this.compositionStyle();
     }
 
 }

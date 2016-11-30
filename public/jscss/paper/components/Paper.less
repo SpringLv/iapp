@@ -8,87 +8,69 @@
   box-shadow: 0 0 2px rgb(0,0,0,0.1);
   z-index: 9999;
 }
-.blog-container {
-  width: 100%;
-  margin-top:41px;
-  .blog-toolbar {
-    position: fixed;
-    left: 0;
-    width: 40px;
-    min-height: 100%;
-    border-right: 1px solid #dddddd;
-    text-align: center;
-  }
-  .blog-body {
-    left: 40px;
-    width: 100%;
-    padding-left: 40px;
-    border-right: 1px solid #dddddd;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-direction: normal;
-    -moz-flex-direction: row;
-    -webkit-flex-direction: row;
-    &>div{
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      box-sizing: border-box;
-    }
-    .blog-chapter {
-      -webkit-animation-name: fadeinL;
-      -webkit-animation-duration: 300ms;
-      -webkit-animation-iteration-count:1; /*无限循环*/
-      -webkit-animation-timing-function:ease-out;
-      width: 100px;
-    }
-    .blog-section {
-      -webkit-animation-name: fadeinL;
-      -webkit-animation-duration: 300ms;
-      -webkit-animation-iteration-count:1; /*无限循环*/
-      -webkit-animation-timing-function:ease-out;
-      width: 100px;
-    }
-    .blog-text {
-      -webkit-animation-name: fadeinL;
-      -webkit-animation-duration: 300ms;
-      -webkit-animation-iteration-count:1; /*无限循环*/
-      -webkit-animation-timing-function:ease-out;
-      width: 100px;
-    }
-    ul {
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-direction: normal;
-      -webkit-box-orient: horizontal;
-      -moz-flex-direction: column;
-      -webkit-flex-direction: column;
-      -webkit-box-align: center;
-      -moz-align-items: center;
-      -webkit-align-items: center;
-      align-items: center;
-      list-style: none;
-
-      box-sizing: border-box;
-      padding: 0;
-      li {
-        width: 100%;
-        padding: 5px;
-        border-right: none;
-
-        span{
-          border: 1px solid #ddd;
-          padding: 5px;
-        }
-      }
-    }
+.blog-toolbar {
+  position: fixed;
+  left: 0;
+  top: 41px;
+  width: 5%;
+  min-height: 100%;
+  border-right: 1px solid #dddddd;
+  text-align: center;
+  z-index: 999;
+}
+.blog-body {
+  position: fixed;
+  z-index: 99;
+  top: 41px;
+  left: 5%;
+  width: 95%;
+  min-height: 100%;
+  border-right: 1px solid #dddddd;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  &>div{
 
   }
+  .blog-chapter {
+    -webkit-animation-name: fadeinL;
+    -webkit-animation-duration: 300ms;
+    -webkit-animation-iteration-count:1; /*无限循环*/
+    -webkit-animation-timing-function:ease-out;
+    width: 100px;
+  }
+  .blog-section {
+    -webkit-animation-name: fadeinL;
+    -webkit-animation-duration: 300ms;
+    -webkit-animation-iteration-count:1; /*无限循环*/
+    -webkit-animation-timing-function:ease-out;
+    width: 100px;
+  }
+  .blog-text {
+    -webkit-animation-name: fadeinL;
+    -webkit-animation-duration: 300ms;
+    -webkit-animation-iteration-count:1; /*无限循环*/
+    -webkit-animation-timing-function:ease-out;
+    width: 100px;
+  }
+  ul {
+    list-style: none;
+    box-sizing: border-box;
+    border-right:1px solid #dddddd;
+    padding: 0;
+    overflow-x: scroll;
+    li {
+      width: 100%;
+      padding: 5px;
+      border-right: none;
+    }
+  }
+
 }
 @keyframes rotate {
   0% {
@@ -107,19 +89,19 @@
   }
 }
 @-webkit-keyframes fadeinL{
-  0%{opacity:0;-webkit-transform:translateX(-100px);}
+  0%{opacity:0;-webkit-transform:translateX(-50px);}
   100%{opacity:1;-webkit-transform:translateX(0);}
 }
 @-moz-keyframes fadeinL{
-  0%{opacity:0;-moz-transform:translateX(-100px);}
+  0%{opacity:0;-moz-transform:translateX(-50px);}
   100%{opacity:1;-moz-transform:translateX(0);}
 }
 @-ms-keyframes fadeinL{
-  0%{opacity:0;-ms-transform:translateX(-100px);}
+  0%{opacity:0;-ms-transform:translateX(-50px);}
   100%{opacity:1;-ms-transform:translateX(0);}
 }
 @keyframes fadeinL{
-  0%{opacity:0;transform:translateX(-100px);}
+  0%{opacity:0;transform:translateX(-50px);}
   100%{opacity:1;transform:translateX(0);}
 }
 
