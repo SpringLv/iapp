@@ -208,74 +208,640 @@ router.get('/cityList', function (req, res, next) {
     });
 });
 
-router.get('/blog/chapter', function (req, res, next) {
+router.get('/blogScanner.json', function (req, res, next) {
     res.json({
-        'data': [
-            {'cityName': '上海上海上海', 'cityCode': '310100'},
-            {'cityName': '北京', 'cityCode': '110100'},
-            {'cityName': '广州广州广州', 'cityCode': '410100'},
-            {'cityName': '杭州', 'cityCode': '330100'},
-            {'cityName': '南京', 'cityCode': '320100'},
-            {'cityName': '大连', 'cityCode': '210200'},
-            {'cityName': '沈阳', 'cityCode': '200100'}
-        ]
+        "chapterList": [
+            {
+                "name": "Java",
+                "id": 11,
+                "sort": 1,
+                "userId": 1,
+                "count": 5,
+                "sectionList": [
+                    {
+                        "name": "三闾大夫",
+                        "id": 14,
+                        "sort": 1,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "我多",
+                        "id": 16,
+                        "sort": 2,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "sdf",
+                        "id": 13,
+                        "sort": 3,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "aaa",
+                        "id": 12,
+                        "sort": 4,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "多线程",
+                        "id": 2,
+                        "sort": 5,
+                        "chapterId": 11,
+                        "createTime": 1480262400000,
+                        "modifiedTime": 1480262400000
+                    },
+                    {
+                        "name": "三闾大夫",
+                        "id": 14,
+                        "sort": 1,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "我多",
+                        "id": 16,
+                        "sort": 2,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "sdf",
+                        "id": 13,
+                        "sort": 3,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "aaa",
+                        "id": 12,
+                        "sort": 4,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "多线程",
+                        "id": 2,
+                        "sort": 5,
+                        "chapterId": 11,
+                        "createTime": 1480262400000,
+                        "modifiedTime": 1480262400000
+                    },
+                    {
+                        "name": "三闾大夫",
+                        "id": 14,
+                        "sort": 1,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "我多",
+                        "id": 16,
+                        "sort": 2,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "sdf",
+                        "id": 13,
+                        "sort": 3,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "aaa",
+                        "id": 12,
+                        "sort": 4,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "多线程",
+                        "id": 2,
+                        "sort": 5,
+                        "chapterId": 11,
+                        "createTime": 1480262400000,
+                        "modifiedTime": 1480262400000
+                    },
+                    {
+                        "name": "三闾大夫",
+                        "id": 14,
+                        "sort": 1,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "我多",
+                        "id": 16,
+                        "sort": 2,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "sdf",
+                        "id": 13,
+                        "sort": 3,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "aaa",
+                        "id": 12,
+                        "sort": 4,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "多线程",
+                        "id": 2,
+                        "sort": 5,
+                        "chapterId": 11,
+                        "createTime": 1480262400000,
+                        "modifiedTime": 1480262400000
+                    },
+                    {
+                        "name": "三闾大夫",
+                        "id": 14,
+                        "sort": 1,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "我多",
+                        "id": 16,
+                        "sort": 2,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "sdf",
+                        "id": 13,
+                        "sort": 3,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "aaa",
+                        "id": 12,
+                        "sort": 4,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "多线程",
+                        "id": 2,
+                        "sort": 5,
+                        "chapterId": 11,
+                        "createTime": 1480262400000,
+                        "modifiedTime": 1480262400000
+                    },
+                    {
+                        "name": "三闾大夫",
+                        "id": 14,
+                        "sort": 1,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "我多",
+                        "id": 16,
+                        "sort": 2,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "sdf",
+                        "id": 13,
+                        "sort": 3,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "aaa",
+                        "id": 12,
+                        "sort": 4,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "多线程",
+                        "id": 2,
+                        "sort": 5,
+                        "chapterId": 11,
+                        "createTime": 1480262400000,
+                        "modifiedTime": 1480262400000
+                    },
+                    {
+                        "name": "三闾大夫",
+                        "id": 14,
+                        "sort": 1,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "我多",
+                        "id": 16,
+                        "sort": 2,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "sdf",
+                        "id": 13,
+                        "sort": 3,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "aaa",
+                        "id": 12,
+                        "sort": 4,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "多线程",
+                        "id": 2,
+                        "sort": 5,
+                        "chapterId": 11,
+                        "createTime": 1480262400000,
+                        "modifiedTime": 1480262400000
+                    },
+                    {
+                        "name": "三闾大夫",
+                        "id": 14,
+                        "sort": 1,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "我多",
+                        "id": 16,
+                        "sort": 2,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "sdf",
+                        "id": 13,
+                        "sort": 3,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "aaa",
+                        "id": 12,
+                        "sort": 4,
+                        "chapterId": 11,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "多线程",
+                        "id": 2,
+                        "sort": 5,
+                        "chapterId": 11,
+                        "createTime": 1480262400000,
+                        "modifiedTime": 1480262400000
+                    }
+                ],
+                "createTime": 1480521600000,
+                "modifiedTime": 1480521600000
+            },
+            {
+                "name": "Tomcat",
+                "id": 24,
+                "sort": 2,
+                "userId": 1,
+                "count": 0,
+                "sectionList": [],
+                "createTime": 1480521600000,
+                "modifiedTime": 1480521600000
+            },
+            {
+                "name": "Oracle",
+                "id": 28,
+                "sort": 3,
+                "userId": 1,
+                "count": 0,
+                "sectionList": [],
+                "createTime": 1480521600000,
+                "modifiedTime": 1480521600000
+            },
+            {
+                "name": "Mysql",
+                "id": 29,
+                "sort": 4,
+                "userId": 1,
+                "count": 0,
+                "sectionList": [],
+                "createTime": 1480521600000,
+                "modifiedTime": 1480521600000
+            },
+            {
+                "name": "Shell",
+                "id": 27,
+                "sort": 5,
+                "userId": 1,
+                "count": 0,
+                "sectionList": [],
+                "createTime": 1480521600000,
+                "modifiedTime": 1480521600000
+            },
+            {
+                "name": "Spring",
+                "id": 13,
+                "sort": 6,
+                "userId": 1,
+                "count": 2,
+                "sectionList": [
+                    {
+                        "name": "Tomcat源码",
+                        "id": 3,
+                        "sort": 1,
+                        "chapterId": 13,
+                        "createTime": 1480262400000,
+                        "modifiedTime": 1480262400000
+                    },
+                    {
+                        "name": "Tomcat进阶",
+                        "id": 4,
+                        "sort": 2,
+                        "chapterId": 13,
+                        "createTime": 1480262400000,
+                        "modifiedTime": 1480262400000
+                    }
+                ],
+                "createTime": 1480521600000,
+                "modifiedTime": 1480521600000
+            },
+            {
+                "name": "Ibatis",
+                "id": 26,
+                "sort": 7,
+                "userId": 1,
+                "count": 0,
+                "sectionList": [],
+                "createTime": 1480521600000,
+                "modifiedTime": 1480521600000
+            },
+            {
+                "name": "Hibernate",
+                "id": 23,
+                "sort": 8,
+                "userId": 1,
+                "count": 0,
+                "sectionList": [],
+                "createTime": 1480521600000,
+                "modifiedTime": 1480521600000
+            },
+            {
+                "name": "Maven",
+                "id": 33,
+                "sort": 9,
+                "userId": 1,
+                "count": 0,
+                "sectionList": [],
+                "createTime": 1480608000000,
+                "modifiedTime": 1480608000000
+            },
+            {
+                "name": "Ant",
+                "id": 35,
+                "sort": 10,
+                "userId": 1,
+                "count": 0,
+                "sectionList": [],
+                "createTime": 1480608000000,
+                "modifiedTime": 1480608000000
+            },
+            {
+                "name": "Log4J",
+                "id": 37,
+                "sort": 11,
+                "userId": 1,
+                "count": 0,
+                "sectionList": [],
+                "createTime": 1480608000000,
+                "modifiedTime": 1480608000000
+            },
+            {
+                "name": "OSGI",
+                "id": 25,
+                "sort": 12,
+                "userId": 1,
+                "count": 0,
+                "sectionList": [],
+                "createTime": 1480521600000,
+                "modifiedTime": 1480521600000
+            },
+            {
+                "name": "Docker",
+                "id": 14,
+                "sort": 13,
+                "userId": 1,
+                "count": 2,
+                "sectionList": [
+                    {
+                        "name": "Spring事务",
+                        "id": 5,
+                        "sort": 1,
+                        "chapterId": 14,
+                        "createTime": 1480262400000,
+                        "modifiedTime": 1480262400000
+                    },
+                    {
+                        "name": "Spring源码",
+                        "id": 6,
+                        "sort": 2,
+                        "chapterId": 14,
+                        "createTime": 1480262400000,
+                        "modifiedTime": 1480262400000
+                    }
+                ],
+                "createTime": 1480521600000,
+                "modifiedTime": 1480521600000
+            },
+            {
+                "name": "学习计划",
+                "id": 38,
+                "sort": 14,
+                "userId": 1,
+                "count": 0,
+                "sectionList": [],
+                "createTime": 1480608000000,
+                "modifiedTime": 1480608000000
+            },
+            {
+                "name": "软件使用",
+                "id": 34,
+                "sort": 15,
+                "userId": 1,
+                "count": 3,
+                "sectionList": [
+                    {
+                        "name": "SVN",
+                        "id": 9,
+                        "sort": 1,
+                        "chapterId": 34,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "Eclipse",
+                        "id": 10,
+                        "sort": 2,
+                        "chapterId": 34,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    },
+                    {
+                        "name": "sdfssssss",
+                        "id": 11,
+                        "sort": 3,
+                        "chapterId": 34,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    }
+                ],
+                "createTime": 1480608000000,
+                "modifiedTime": 1480608000000
+            },
+            {
+                "name": "Shiro",
+                "id": 36,
+                "sort": 16,
+                "userId": 1,
+                "count": 0,
+                "sectionList": [],
+                "createTime": 1480608000000,
+                "modifiedTime": 1480608000000
+            },
+            {
+                "name": "JBPM",
+                "id": 21,
+                "sort": 17,
+                "userId": 1,
+                "count": 0,
+                "sectionList": [],
+                "createTime": 1480521600000,
+                "modifiedTime": 1480521600000
+            },
+            {
+                "name": "问道",
+                "id": 32,
+                "sort": 18,
+                "userId": 1,
+                "count": 1,
+                "sectionList": [
+                    {
+                        "name": "a",
+                        "id": 7,
+                        "sort": 1,
+                        "chapterId": 32,
+                        "createTime": 1480608000000,
+                        "modifiedTime": 1480608000000
+                    }
+                ],
+                "createTime": 1480608000000,
+                "modifiedTime": 1480608000000
+            }
+        ],
+        "isSuccess": true
     });
 });
-router.get('/blog/section', function (req, res, next) {
+router.get('/blogArticleList.json', function(req, res, next){
     res.json({
-        'data': [
-            {'cityName': '上海', 'cityCode': '310100'},
-            {'cityName': '北京', 'cityCode': '110100'},
-            {'cityName': '广广州广州州', 'cityCode': '410100'},
-            {'cityName': '广州广州', 'cityCode': '330100'},
-            {'cityName': '南京', 'cityCode': '320100'},
-            {'cityName': '大连大连大连', 'cityCode': '210200'},
-            {'cityName': '沈阳沈阳', 'cityCode': '200100'},
-            {'cityName': '上海', 'cityCode': '310100'},
-            {'cityName': '北京北京', 'cityCode': '110100'},
-            {'cityName': '广州', 'cityCode': '410100'},
-            {'cityName': '杭州', 'cityCode': '330100'},
-            {'cityName': '南京', 'cityCode': '320100'},
-            {'cityName': '大连', 'cityCode': '210200'},
-            {'cityName': '沈阳沈阳沈阳', 'cityCode': '200100'},
-            {'cityName': '上海', 'cityCode': '310100'},
-            {'cityName': '北京北京北京', 'cityCode': '110100'},
-            {'cityName': '广州', 'cityCode': '410100'},
-            {'cityName': '杭州', 'cityCode': '330100'},
-            {'cityName': '南京南京南京', 'cityCode': '320100'},
-            {'cityName': '大连', 'cityCode': '210200'},
-            {'cityName': '沈阳', 'cityCode': '200100'},
-            {'cityName': '上海', 'cityCode': '310100'},
-            {'cityName': '北京', 'cityCode': '110100'},
-            {'cityName': '广州', 'cityCode': '410100'},
-            {'cityName': '杭州', 'cityCode': '330100'},
-            {'cityName': '南京', 'cityCode': '320100'},
-            {'cityName': '大连', 'cityCode': '210200'},
-            {'cityName': '沈阳', 'cityCode': '200100'},
-            {'cityName': '上海', 'cityCode': '310100'},
-            {'cityName': '北京', 'cityCode': '110100'},
-            {'cityName': '广州广州广州', 'cityCode': '410100'},
-            {'cityName': '杭州', 'cityCode': '330100'},
-            {'cityName': '南京', 'cityCode': '320100'},
-            {'cityName': '大连', 'cityCode': '210200'},
-            {'cityName': '沈阳', 'cityCode': '200100'}
-        ]
-    });
-});
-router.get('/blog/text', function (req, res, next) {
-    res.json({
-        'data': [
-            {'cityName': '上海', 'cityCode': '310100'},
-            {'cityName': '北京', 'cityCode': '110100'},
-            {'cityName': '广州', 'cityCode': '410100'},
-            {'cityName': '杭州', 'cityCode': '330100'},
-            {'cityName': '南京', 'cityCode': '320100'},
-            {'cityName': '大连', 'cityCode': '210200'},
-            {'cityName': '沈阳', 'cityCode': '200100'}
-        ]
-    });
-});
-
+        "articleList": [
+            {
+                "id": 1,
+                "type": 1,
+                "content": "<blog-text-normal>我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人</blog-text-normal><blog-text-normal>我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人</blog-text-normal><bolog-img-normal>image/baidulogo.jpg</bolog-img-normal><bolog-img-br>image/googlelogo.jpg</bolog-img-br><bolog-img-normal>image/tencentlogo.jpg</bolog-img-normal><bolog-img-normal>image/alibabalogo.jpg</bolog-img-normal><blog-text-normal>我深深的爱着我的祖国</blog-text-normal><blog-text-normal>邓小平</blog-text-normal>",
+                "contentHtml": "<font>我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人</font><br /><br /><font>我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人</font><br /><br />< img src=\"image/baidulogo.jpg\" />< img src=\"image/googlelogo.jpg\" /><br /><br />< img src=\"image/tencentlogo.jpg\" />< img src=\"image/alibabalogo.jpg\" /><br /><br /><font>我深深的爱着我的祖国</font><br /><br /><font>邓小平</font>",
+                "title": "NullPointException",
+                "sectionId": 14,
+                "sort": 1,
+                "createTime": 1480262400000,
+                "modifiedTime": 1480262400000
+            },
+            {
+                "id": 2,
+                "type": 1,
+                "content": "<blog-text-normal>我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人</blog-text-normal><blog-text-normal>我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人</blog-text-normal><bolog-img-normal>image/baidulogo.jpg</bolog-img-normal><bolog-img-br>image/googlelogo.jpg</bolog-img-br><bolog-img-normal>image/tencentlogo.jpg</bolog-img-normal><bolog-img-normal>image/alibabalogo.jpg</bolog-img-normal><blog-text-normal>我深深的爱着我的祖国</blog-text-normal><blog-text-normal>邓小平</blog-text-normal>",
+                "contentHtml": "<font>我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人</font><br /><br /><font>我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人</font><br /><br />< img src=\"image/baidulogo.jpg\" />< img src=\"image/googlelogo.jpg\" /><br /><br />< img src=\"image/tencentlogo.jpg\" />< img src=\"image/alibabalogo.jpg\" /><br /><br /><font>我深深的爱着我的祖国</font><br /><br /><font>邓小平</font>",
+                "title": "String解析",
+                "sectionId": 14,
+                "sort": 1,
+                "createTime": 1480262400000,
+                "modifiedTime": 1480262400000
+            },
+            {
+                "id": 3,
+                "type": 1,
+                "content": "<blog-text-normal>我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人</blog-text-normal><blog-text-normal>我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人</blog-text-normal><bolog-img-normal>image/baidulogo.jpg</bolog-img-normal><bolog-img-br>image/googlelogo.jpg</bolog-img-br><bolog-img-normal>image/tencentlogo.jpg</bolog-img-normal><bolog-img-normal>image/alibabalogo.jpg</bolog-img-normal><blog-text-normal>我深深的爱着我的祖国</blog-text-normal><blog-text-normal>邓小平</blog-text-normal>",
+                "contentHtml":"<img src='http://reactchina.sxlcdn.com/images/emoji/emoji_one/heartbeat.png?v=3'/>",
+                "title": "HashMap源码分析",
+                "sectionId": 14,
+                "sort": 1,
+                "createTime": 1480262400000,
+                "modifiedTime": 1480262400000
+            }
+        ],
+        "isSuccess": true
+    })
+})
+router.get('/blogArticleDetail.json', function(req, res, next){
+    res.json(
+        {
+            "article": {
+                "id": 1,
+                "type": 1,
+                "content": "<blog-text-normal>我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人</blog-text-normal><blog-text-normal>我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人</blog-text-normal><bolog-img-normal>image/baidulogo.jpg</bolog-img-normal><bolog-img-br>image/googlelogo.jpg</bolog-img-br><bolog-img-normal>image/tencentlogo.jpg</bolog-img-normal><bolog-img-normal>image/alibabalogo.jpg</bolog-img-normal><blog-text-normal>我深深的爱着我的祖国</blog-text-normal><blog-text-normal>邓小平</blog-text-normal>",
+                "sectionId": 14,
+                "title": "NullPointException",
+                "contentHtml": "<font>我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人</font><br /><br /><font>我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人</font><br /><br /><img src=\"image/baidulogo.jpg\" /><img src=\"image/googlelogo.jpg\" /><br /><br />< img src=\"image/tencentlogo.jpg\" />< img src=\"image/alibabalogo.jpg\" /><br /><br /><font>我深深的爱着我的祖国</font><br /><br /><font>邓小平</font>",
+                "sort": 1,
+                "createTime": 1480262400000,
+                "modifiedTime": 1480262400000
+            },
+            "isSuccess": true
+        }
+    )
+})
 /* ajax searchList */
 router.get('/searchList', function (req, res, next) {
     res.json({

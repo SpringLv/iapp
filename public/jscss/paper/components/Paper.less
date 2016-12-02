@@ -1,3 +1,9 @@
+body{
+  /*background-image: url("/images/7.jpg");
+  background-origin: border-box;
+  background-repeat: no-repeat;
+  background-size: 100%;*/
+}
 .blog-top{
   position: fixed;
   top:0;
@@ -7,6 +13,9 @@
   background-color: #f0f0f0;
   box-shadow: 0 0 2px rgb(0,0,0,0.1);
   z-index: 9999;
+  opacity: .7;
+  filter: blur(3px);
+  background: linear-gradient(to bottom, #f0f0f0 0%,#f9f9f9 100%);
 }
 .blog-toolbar {
   position: fixed;
@@ -22,10 +31,8 @@
   position: fixed;
   z-index: 99;
   top: 41px;
-  left: 5%;
-  width: 95%;
+  width: 100%;
   min-height: 100%;
-  border-right: 1px solid #dddddd;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -35,39 +42,67 @@
   -moz-flex-direction: row;
   -webkit-flex-direction: row;
   &>div{
-
+    min-width: 100px;
+    stroke-opacity: .6;
+    margin-left: 1px;
   }
   .blog-chapter {
     -webkit-animation-name: fadeinL;
     -webkit-animation-duration: 300ms;
     -webkit-animation-iteration-count:1; /*无限循环*/
     -webkit-animation-timing-function:ease-out;
-    width: 100px;
   }
   .blog-section {
     -webkit-animation-name: fadeinL;
     -webkit-animation-duration: 300ms;
     -webkit-animation-iteration-count:1; /*无限循环*/
     -webkit-animation-timing-function:ease-out;
-    width: 100px;
   }
   .blog-text {
     -webkit-animation-name: fadeinL;
     -webkit-animation-duration: 300ms;
     -webkit-animation-iteration-count:1; /*无限循环*/
     -webkit-animation-timing-function:ease-out;
-    width: 100px;
   }
   ul {
     list-style: none;
     box-sizing: border-box;
-    border-right:1px solid #dddddd;
     padding: 0;
     overflow-x: scroll;
     li {
+      position: relative;
+      -webkit-animation-name: bouncein;
+      -webkit-animation-duration: 300ms;
+      -webkit-animation-iteration-count:1; /*无限循环*/
+      -webkit-animation-timing-function:ease-out;
+      margin-top: 0px;
       width: 100%;
       padding: 5px;
-      border-right: none;
+      background-color: #ececec;
+      border-bottom: 1px solid #dddddd;
+      text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.8);
+      background: linear-gradient(to left, #f0f0f0 0%,#f9f9f9 80%);
+      overflow:hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      span:nth-child(2){
+        border-radius: 25%;
+        display: block;
+        position: absolute;
+        background: #0b97c4;
+        text-align: center;
+        width: 15px;
+        height: 15px;
+        top: 5px;
+        right: 2px;
+        font-size: 10px;
+        color: #ffffff;
+        z-index: 9999999;
+        text-shadow: none;
+      }
+    }
+    li:focus{
+      background-color: #f4f4f4;
     }
   }
 
@@ -104,5 +139,21 @@
   0%{opacity:0;transform:translateX(-50px);}
   100%{opacity:1;transform:translateX(0);}
 }
-
+/* 弹入 */
+@-webkit-keyframes bouncein {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(1.05);
+  }
+  70% {
+    -webkit-transform: scale(0.9);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
 

@@ -20,7 +20,7 @@ module.exports = {
     output: {
         path: path.join('public/dist','0.0.0'),
         //path: path.join(__dirname, '.', 'public', '', ''),
-        //publicPath: '/assets/',
+        publicPath: '/public/',
         filename: '[name].js'
         //,chunkFilename: '[id]' + (debug ? '' : '-[chunkhash]') + '.js'
     },
@@ -30,7 +30,7 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.jsx?$/,
+                test: /\.js?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel',
                 query: {
@@ -47,6 +47,11 @@ module.exports = {
         new webpack.ProvidePlugin({
             React: 'react',
             ReactDOM: 'react-dom'
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': '"production"'
+            }
         })
     ]
     //,externals: [

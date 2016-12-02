@@ -5,11 +5,18 @@ class Paper extends React.Component {
 
     render() {
         let items = [];
+        let count = "";
         if (!this.props.items.length) return (<div></div>);
         this.props.items.forEach((item, index)=> {
+            if(item.count){
+                count = <span>{item.count}</span>
+            }else{
+                count = ""
+            }
             items.push(
                 <li onClick={this.props.EditItem.bind(this.props._this,item, index)}>
-                    <span>{item.name}</span>
+                    <span>{item.name || item.title}</span>
+                    {count}
                 </li>
             )
         });

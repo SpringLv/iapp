@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
-
 var routes = require('./routes/mapping');
 //var users = require('./routes/users');
 //var list = require('./routes/list');

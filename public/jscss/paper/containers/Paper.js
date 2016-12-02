@@ -1,5 +1,6 @@
 import PaperList from "../components/Paper"
 import { connect } from "react-redux"
+import PaperContent from '../components/PaperContent'
 import style from "../components/Paper.less"
 import {
     SEARCH_CHAPTER,
@@ -8,9 +9,14 @@ import {
     SEARCH_TEXT_RESULT,
     SEARCH_CHAPTER_RESULT,
     SEARCH_SECTION_RESULT,
+    SEARCH_CHAPTER_SECTION,
+    RENDER_TEXT,
+    RENDER_TEXT_RESULT,
+    searchChapterSection,
     searchChapter,
     searchSection,
     searchText,
+    renderText,
     Ajax
 } from "../actions/Paper"
 class Paper extends React.Component {
@@ -19,31 +25,23 @@ class Paper extends React.Component {
     }
 
     componentWillMount() {
-
+        this.searchChapter();
     }
 
     render() {
         const chapterItems = this.props.chapterList.map(item=> {
-            item.name = item.cityName;
-            item.id = item.cityCode;
             return item;
         });
         const sectionItems = this.props.sectionList.map(item=> {
-            item.name = item.cityName;
-            item.id = item.cityCode;
             return item;
         });
         const textItems = this.props.textList.map(item=> {
-            item.name = item.cityName;
-            item.id = item.cityCode
             return item;
         });
         return (
             <div>
                 <div className="blog-top" ref="topper"></div>
-                <div className="blog-toolbar" ref="toolbar">
-                    <span onClick={this.searchChapter.bind(this,"","")}>11</span>
-                </div>
+
                 <div className="blog-body" ref="content">
                     <PaperList
                         className="blog-chapter"
@@ -64,28 +62,34 @@ class Paper extends React.Component {
                         items={textItems||[]}
                         _this={this}
                         EditItem={this.renderText}
+                        notCount="ok"
                         >
                     </PaperList>
+                    <PaperContent
+                        className="blog-content"
+                        _this={this}
+                        content={this.props.article||{}}
+                        >
+                    </PaperContent>
                 </div>
             </div>
         )
     }
 
-    searchChapter(item, index) {
-        this.props.getList(searchChapter,SEARCH_CHAPTER_RESULT,'/cityList',1);
+    searchChapter() {
+        this.props.getList(searchChapter,SEARCH_CHAPTER_RESULT,'blogScanner.json',"");
     }
 
     searchSection(item, index) {
-        this.props.getList(searchSection,SEARCH_SECTION_RESULT,'/blog/section',item.id);
+        this.props.dispatch(searchChapterSection(item));
     }
 
     searchText(item, index) {
-        this.props.getList(searchText,SEARCH_TEXT_RESULT,'/blog/text',item.id);
+        this.props.getList(searchText,SEARCH_TEXT_RESULT,'blogArticleList.json',item.id);
     }
 
     renderText(item, index) {
-        //console.log(item, index);
-        //this.props.getList(searchText,SEARCH_TEXT,'/cityList',item.id);
+        this.props.getList(renderText,RENDER_TEXT_RESULT,'blogArticleDetail.json',item.id);
     }
 
     compositionStyle() {
@@ -104,16 +108,15 @@ class Paper extends React.Component {
 const mapStateToProps = state => {
     return {
         sectionList: state.sectionList || [],
-        sectionId: state.chapterId || "",
         chapterList: state.chapterList || [],
-        chapterId: state.chapterId || "",
         textList: state.textList || [],
-        textId: state.textId || ""
+        article: state.article || {}
     }
 };
 const mapDispatchToProps = dispatch => {
     return {
-        getList: (action, type, url, id) => dispatch(Ajax(action, type, url, id))
+        getList: (action, type, url, id) => dispatch(Ajax(action, type, url, id)),
+        dispatch: item => dispatch(item)
     }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Paper);
