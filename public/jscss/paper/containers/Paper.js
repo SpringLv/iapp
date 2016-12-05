@@ -71,9 +71,14 @@ class Paper extends React.Component {
                         content={this.props.article||{}}
                         >
                     </PaperContent>
+
                 </div>
             </div>
         )
+    }
+
+    drag (){
+        console.log(event.target)
     }
 
     searchChapter() {
