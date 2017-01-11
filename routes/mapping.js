@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
+
 /* get index */
 router.get(['/index.html','/'], function (req, res, next) {
     res.render('index.html', {title: 'index'});
 });
-
 /* get reduxer */
 router.get(['/paper.html','/'], function (req, res, next) {
     res.render('paper.html', {title: 'paper'});

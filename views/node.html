@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+<ul>
+    {% for item in data %}
+    <li>{{ item.name }}</li>
+    <li>{{ item.password }}</li>
+    {% endfor %}
+</ul>
+<script type="text/javascript" src="/static/react.min.js"></script>
+<script type="text/javascript" src="/static/react-dom.min.js"></script>
+<script type="text/javascript" src="/static/jquery.min.js"></script>
+{% endblock %}

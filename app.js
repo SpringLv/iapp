@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
 var routes = require('./routes/mapping');
-//var users = require('./routes/users');
+var users = require('./routes/users');
 //var list = require('./routes/list');
 //var deptList = require('./routes/deptList');
 //var searchList = require('./routes/searchList');
@@ -33,7 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-//app.use('/list', list);
+app.use('/users', users);
 //app.use('/deptList', deptList);
 //app.use('/searchList',searchList);
 //app.use('/bossList',bossList);
