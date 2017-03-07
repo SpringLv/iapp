@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import SearchInput from './index/SearchInput.js';
+import SearchInput from './actions/SearchInput.js';
 
 //import { Router, Route, hashHistory } from 'react-router';
-import Util from './index/Util';
-import styles from './index/style.less';
+import Util from './actions/Util';
+import styles from './actions/style.less';
 ReactDOM.render(
     <div>
         <SearchInput></SearchInput>

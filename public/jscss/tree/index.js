@@ -4,8 +4,8 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 //import createLogger from 'redux-logger'
-import EmailSearch from './email/containers/EmailSearch';
-import reducers from './email/reducers/EmailSearch'
+import Tree from './containers/MenuTree';
+import MenuTree from './reducers/MenuTree'
 
 const middleware = [thunk];
 //if (process.env.NODE_ENV !== 'production') {
@@ -13,12 +13,12 @@ const middleware = [thunk];
 //}
 
 const store = createStore(
-    reducers,
+    MenuTree,
     applyMiddleware(...middleware)
 );
 
 ReactDOM.render(
     <Provider store={store}>
-        <EmailSearch></EmailSearch>
+        <Tree></Tree>
     </Provider>,
     document.getElementById("reactDom"));

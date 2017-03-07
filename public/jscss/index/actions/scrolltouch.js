@@ -1,4 +1,4 @@
-import Util from '../index/Util'
+import Util from './Util'
 class ScrollTouch extends React.Component {
 
     constructor(props) {

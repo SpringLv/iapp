@@ -1,5 +1,5 @@
 import Util from './Util'
-import ScrollTouch from '../util/ScrollTouch'
+import ScrollTouch from './scrolltouch'
 class BossList extends React.Component {
 
     constructor(props) {
@@ -28,7 +28,7 @@ class BossList extends React.Component {
             for (let item of this.state.list) {
                 emp = (
                     <li className="boss-item">
-                        <div className="boss-img-box"><img src="/images/2.jpg" width="90px"/></div>
+                        <div className="boss-img-box"><img src="/images/1.jpg" width="90px"/></div>
                         <div className="boss-name-des">
                             <span className="boss-name">{item.bossName}</span>
                             <span className="boss-des">{item.des}</span>

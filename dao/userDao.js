@@ -21,6 +21,8 @@ module.exports = {
         pool.getConnection(function(err, connection) {
             connection.query(sql.loginCheck, [name,password], function(err, result) {
                 if(result.length==1){
+                    req.session.user = result[0];
+                    var a = "";
                     jsonWrite(res,{isSuccess:true});
                 }else{
                     jsonWrite(res,{isSuccess:false});

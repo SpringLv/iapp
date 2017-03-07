@@ -96,7 +96,6 @@ module.exports = {
                 res.render('node',{data:result});
                 //jsonWrite(res, result);
                 connection.release();
-
             });
         });
     },

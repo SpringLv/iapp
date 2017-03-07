@@ -16,7 +16,7 @@ function entries (globPath) {
     return entries;
 }
 module.exports = {
-    entry: entries('./public/jscss/*.js'),
+    entry: entries('./public/jscss/*/*.js'),
     output: {
         path: path.join('public/dist','0.0.0'),
         //path: path.join(__dirname, '.', 'public', '', ''),

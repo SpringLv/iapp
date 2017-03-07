@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDom from 'react-dom';
+import React from 'react'
+import ReactDom from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 //import createLogger from 'redux-logger'
-import Tree from './tree/containers/MenuTree';
-import MenuTree from './tree/reducers/MenuTree'
+import Paper from './containers/Paper'
+import reducers from './reducers/Paper'
 
 const middleware = [thunk];
 //if (process.env.NODE_ENV !== 'production') {
@@ -13,12 +13,13 @@ const middleware = [thunk];
 //}
 
 const store = createStore(
-    MenuTree,
+    reducers,
     applyMiddleware(...middleware)
 );
 
 ReactDOM.render(
     <Provider store={store}>
-        <Tree></Tree>
+        <Paper></Paper>
     </Provider>,
     document.getElementById("reactDom"));
+
